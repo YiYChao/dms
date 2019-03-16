@@ -8,28 +8,16 @@ import top.yiychao.service.TransportService;
 /**   
 * Copyright: Copyright (c) 2019 YiYChao
 * 
-* @ClassName LogRecDemo.java
-* @Description 	日志测试类，演示日志数据的采集及显示
+* @ClassName EntityDataDemo.java
+* @Description 测试继承之后的方法
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019年3月16日 下午2:51:28 
+* @date 2019年3月16日 下午11:29:37 
 * <p>修改说明:</p>
 */
-public class LogRecDemo {
+public class EntityDataDemo {
 
-	/**
-	* @Function main
-	* @Description	主方法，实现日志数据的采集及显示
-	*
-	* @param args	系统默认参数
-	* @return void	空
-	*
-	* @version v1.0.0
-	* @author YiChao
-	* @date 2019年3月16日 下午2:52:25 
-	* <p>修改说明:</p>
-	 */
 	public static void main(String[] args) {
 		// 创建一个日志业务类
 		LogRecService logRecService = new LogRecService();
@@ -41,5 +29,17 @@ public class LogRecDemo {
 		}
 		// 显示日志信息
 		logRecService.showLog(logs);
+		
+		// 创建物流业务类
+		TransportService transportService = new TransportService();
+		// 创建一个物流对象数组，用于存放采集的三个物流信息
+		Transport[] transports = new Transport[3];
+		for(int i = 0; i < transports.length; i++) {
+			System.out.println("第" + (i + 1) + "个物流数据采集:");
+			transports[i] = transportService.inputTransport();
+		}
+		// 显示物流信息
+		transportService.showTransport(transports);
+		
 	}
 }

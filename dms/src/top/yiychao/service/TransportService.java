@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import top.yiychao.entity.LogRec;
+import top.yiychao.entity.MathcedTransport;
 import top.yiychao.entity.Transport;
 
 /**   
@@ -64,6 +65,27 @@ public class TransportService {
 		for (Transport transport : transports) {
 			if(transport != null) {
 				System.out.println(transport.toString());
+			}
+		}
+	}
+	
+	/**
+	* @Function showMatchTransport
+	* @Description	输出匹配的物流信息
+	*
+	* @param mathcedTransports	物流信息匹配实体，不定参数
+	* @return void	空
+	* @throws	运行时异常
+	*
+	* @version v1.0.0
+	* @author YiChao
+	* @date 2019年3月17日 上午12:05:45 
+	* <p>修改说明:</p>
+	 */
+	public void showMatchTransport(MathcedTransport...mathcedTransports) {
+		for (MathcedTransport mathcedTransport : mathcedTransports) {
+			if(mathcedTransport != null) {
+				System.out.println(mathcedTransport.toString());
 			}
 		}
 	}

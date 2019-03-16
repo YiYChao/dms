@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import top.yiychao.entity.LogRec;
+import top.yiychao.entity.MatchedLogRec;
 
 /**   
 * Copyright: Copyright (c) 2019 YiYChao
@@ -75,6 +76,27 @@ public class LogRecService {
 		for (LogRec log : logRecs) {
 			if(log != null) {
 				System.out.println(log.toString());
+			}
+		}
+	}
+	
+	/**
+	* @Function showMathcedLog
+	* @Description	输出匹配日志信息
+	*
+	* @param matchedLogRecs	日志信息匹配实体，不定参数
+	* @return void	空
+	* @throws	运行时异常
+	*
+	* @version v1.0.0
+	* @author YiChao
+	* @date 2019年3月17日 上午12:07:34 
+	* <p>修改说明:</p>
+	 */
+	public void showMathcedLog(MatchedLogRec...matchedLogRecs) {
+		for (MatchedLogRec matchedLogRec : matchedLogRecs) {
+			if(matchedLogRec != null) {
+				System.out.println(matchedLogRec.toString());
 			}
 		}
 	}
