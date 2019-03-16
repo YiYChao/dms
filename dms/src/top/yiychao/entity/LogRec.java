@@ -30,17 +30,17 @@ public class LogRec {
 	// 登录状态：登录、登出
 	private int logType;
 
-	public static final int LOG_IN = 1; // 登录常量
-	public static final int LOG_OUT = 0; // 登出常量
+	public static final int LOG_IN = 1; 	// 登录常量
+	public static final int LOG_OUT = 0; 	// 登出常量
 
 	// 状态常量
 	public static final int GATHER = 1; // 采集
-	public static final int MATCH = 2; // 匹配
+	public static final int MATCH = 2; 	// 匹配
 	public static final int RECORD = 3; // 记录
-	public static final int SEND = 4; // 发送
+	public static final int SEND = 4; 	// 发送
 	public static final int RECEIVE = 5; // 接收
-	public static final int WRITE = 6; // 归档
-	public static final int SAVE = 7; // 保存
+	public static final int WRITE = 6; 	// 归档
+	public static final int SAVE = 7; 	// 保存
 
 	public int getId() {
 		return id;
