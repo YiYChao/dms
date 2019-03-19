@@ -6,16 +6,16 @@ import top.yiychao.entity.DataBase;
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName DataFilter.java
-* @Description Êı¾İ¹ıÂË³éÏóÀà
+* @Description æ•°æ®è¿‡æ»¤æŠ½è±¡ç±»
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019Äê3ÔÂ17ÈÕ ÏÂÎç8:37:00 
-* <p>ĞŞ¸ÄËµÃ÷:</p>
+* @date 2019å¹´3æœˆ17æ—¥ ä¸‹åˆ8:37:00 
+* <p>ä¿®æ”¹è¯´æ˜:</p>
 */
 public abstract class DataFilter {
 
-	// Êı¾İ¼¯ºÏ
+	// æ•°æ®é›†åˆ
 	private DataBase[] datas;
 
 	public DataBase[] getDatas() {
@@ -35,14 +35,14 @@ public abstract class DataFilter {
 	
 	/**
 	* @Function doFilter
-	* @Description	Êı¾İ¹ıÂË³éÏó·½·¨
+	* @Description	æ•°æ®è¿‡æ»¤æŠ½è±¡æ–¹æ³•
 	*
-	* @return ¿Õ
+	* @return ç©º
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019Äê3ÔÂ17ÈÕ ÏÂÎç8:40:50 
-	* <p>ĞŞ¸ÄËµÃ÷:</p>
+	* @date 2019å¹´3æœˆ17æ—¥ ä¸‹åˆ8:40:50 
+	* <p>ä¿®æ”¹è¯´æ˜:</p>
 	 */
 	public abstract void doFilter();
 	

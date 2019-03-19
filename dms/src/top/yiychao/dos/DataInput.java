@@ -6,38 +6,38 @@ import java.util.Scanner;
  * Copyright: Copyright (c) 2019 YiYChao
  * 
  * @ClassName DataInput.java
- * @Description ´æ´¢²É¼¯µÄÊı¾İ
+ * @Description å­˜å‚¨é‡‡é›†çš„æ•°æ®
  *
  * @version v1.0.0
  * @author YiChao
- * @date 2019Äê3ÔÂ16ÈÕ ÏÂÎç1:07:57
- * <p>ĞŞ¸ÄËµÃ÷: </p>
+ * @date 2019å¹´3æœˆ16æ—¥ ä¸‹åˆ1:07:57
+ * <p>ä¿®æ”¹è¯´æ˜: </p>
  */
 public class DataInput {
 
 	/**
 	 * @Function main
-	 * @Description Ö÷·½·¨£¬ÊµÏÖÊı¾İ´æ´¢
+	 * @Description ä¸»æ–¹æ³•ï¼Œå®ç°æ•°æ®å­˜å‚¨
 	 *
-	 * @param args ÏµÍ³Ä¬ÈÏ²ÎÊı
-	 * @return void ¿Õ
+	 * @param args ç³»ç»Ÿé»˜è®¤å‚æ•°
+	 * @return void ç©º
 	 *
 	 * @version v1.0.0
 	 * @author YiChao
-	 * @date 2019Äê3ÔÂ16ÈÕ ÏÂÎç1:09:53
-	 * <p>ĞŞ¸ÄËµÃ÷:</p>
+	 * @date 2019å¹´3æœˆ16æ—¥ ä¸‹åˆ1:09:53
+	 * <p>ä¿®æ”¹è¯´æ˜:</p>
 	 */
 	public static void main(String[] args) {
-		// ÉùÃ÷Ò»¸öÕûĞÍÊı×é
+		// å£°æ˜ä¸€ä¸ªæ•´å‹æ•°ç»„
 		int[] data = new int[10];
-		// ½¨Á¢Ò»¸ö´Ó¼üÅÌ½ÓÊÕÊı¾İµÄÉ¨ÃèÆ÷
+		// å»ºç«‹ä¸€ä¸ªä»é”®ç›˜æ¥æ”¶æ•°æ®çš„æ‰«æå™¨
 		Scanner scanner = new Scanner(System.in);
-		// Ñ­»·²É¼¯10¸öÊı¾İ
+		// å¾ªç¯é‡‡é›†10ä¸ªæ•°æ®
 		for (int i = 0; i < data.length; i++) {
-			System.out.print("ÇëÊäÈëµÚ" + (i + 1) + "¸öÊı¾İ:");
+			System.out.print("è¯·è¾“å…¥ç¬¬" + (i + 1) + "ä¸ªæ•°æ®:");
 			data[i] = scanner.nextInt();
 		}
-		// Ñ­»·Êä³ö²É¼¯µÄÊı¾İ
+		// å¾ªç¯è¾“å‡ºé‡‡é›†çš„æ•°æ®
 		for (int i = 0; i < data.length; i++) {
 			System.out.print(data[i] + " ");
 		}

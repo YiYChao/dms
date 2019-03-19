@@ -4,12 +4,12 @@ package top.yiychao.entity;
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName MathcedTransport.java
-* @Description ÎïÁ÷Êı¾İÆ¥ÅäÀà£¬¶ÔÎïÁ÷ÊµÌå½øĞĞÆ¥Åä
+* @Description ç‰©æµæ•°æ®åŒ¹é…ç±»ï¼Œå¯¹ç‰©æµå®ä½“è¿›è¡ŒåŒ¹é…
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019Äê3ÔÂ16ÈÕ ÏÂÎç11:54:21 
-* <p>ĞŞ¸ÄËµÃ÷:</p>
+* @date 2019å¹´3æœˆ16æ—¥ ä¸‹åˆ11:54:21 
+* <p>ä¿®æ”¹è¯´æ˜:</p>
 */
 public class MathcedTransport {
 
@@ -41,28 +41,28 @@ public class MathcedTransport {
 		this.receive = receive;
 	}
 
-	// ÎŞ²Î¹¹Ôì
+	// æ— å‚æ„é€ 
 	public MathcedTransport() {
 		super();
 	}
 
-	// ÓĞ²Î¹¹Ôì
+	// æœ‰å‚æ„é€ 
 	public MathcedTransport(Transport send, Transport trans, Transport receive) {
 		if(send.getTransportType() != Transport.SENDING) {
-			throw new RuntimeException("²»ÊÇ·¢»õ¼ÇÂ¼£¡");
+			throw new RuntimeException("ä¸æ˜¯å‘è´§è®°å½•ï¼");
 		}
 		if(trans.getTransportType() != Transport.TRANSPORTING) {
-			throw new RuntimeException("²»ÊÇËÍ»õ¼ÇÂ¼£¡");
+			throw new RuntimeException("ä¸æ˜¯é€è´§è®°å½•ï¼");
 		}
 		if(receive.getTransportType() != Transport.RECEIVED) {
-			throw new RuntimeException("²»ÊÇÇ©ÊÕ¼ÇÂ¼£¡");
+			throw new RuntimeException("ä¸æ˜¯ç­¾æ”¶è®°å½•ï¼");
 		}
 		this.send = send;
 		this.trans = trans;
 		this.receive = receive;
 	}
 
-	// ÖØĞ´toString·½·¨
+	// é‡å†™toStringæ–¹æ³•
 	@Override
 	public String toString() {
 		return  send.toString() + "|" + trans.toString() + "|" + receive.toString();

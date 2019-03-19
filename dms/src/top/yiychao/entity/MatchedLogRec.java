@@ -6,66 +6,66 @@ import java.util.Date;
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName MatchedLogRec.java
-* @Description ÈÕÖ¾Êı¾İÆ¥ÅäÀà£¬¶ÔÈÕÖ¾ÊµÌåÀà½øĞĞÆ¥Åä
+* @Description æ—¥å¿—æ•°æ®åŒ¹é…ç±»ï¼Œå¯¹æ—¥å¿—å®ä½“ç±»è¿›è¡ŒåŒ¹é…
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019Äê3ÔÂ16ÈÕ ÏÂÎç11:36:29 
-* <p>ĞŞ¸ÄËµÃ÷:</p>
+* @date 2019å¹´3æœˆ16æ—¥ ä¸‹åˆ11:36:29 
+* <p>ä¿®æ”¹è¯´æ˜:</p>
 */
 public class MatchedLogRec {
 
-	private LogRec login;	// µÇÂ¼ÈÕÖ¾
-	private LogRec logout;	// µÇ³öÈÕÖ¾
+	private LogRec login;	// ç™»å½•æ—¥å¿—
+	private LogRec logout;	// ç™»å‡ºæ—¥å¿—
 	
-	// »ñÈ¡ÓÃ»§µÇÂ¼Ãû
+	// è·å–ç”¨æˆ·ç™»å½•å
 	public String getUser() {
 		return login.getUser();
 	}
 	
-	// µÇÂ¼Ê±¿Ì
+	// ç™»å½•æ—¶åˆ»
 	public Date getLoginTime() {
 		return login.getTime();
 	}
 	
-	// µÇ³öÊ±¿Ì
+	// ç™»å‡ºæ—¶åˆ»
 	public Date getLogoutTime() {
 		return logout.getTime();
 	}
 	
-	// µÇÂ¼¼ÇÂ¼
+	// ç™»å½•è®°å½•
 	public LogRec getLogin() {
 		return login;
 	}
 	
-	// µÇ³ö¼ÇÂ¼
+	// ç™»å‡ºè®°å½•
 	public LogRec getLogout() {
 		return logout;
 	}
 
-	// ¿Õ¹¹Ôì
+	// ç©ºæ„é€ 
 	public MatchedLogRec() {
 	}
 
-	// ÓĞ²Î¹¹Ôì
+	// æœ‰å‚æ„é€ 
 	public MatchedLogRec(LogRec login, LogRec logout) {
 		if(login.getLogType() != LogRec.LOG_IN) {
-			throw new RuntimeException("²»ÊÇµÇÂ¼¼ÇÂ¼£¡");
+			throw new RuntimeException("ä¸æ˜¯ç™»å½•è®°å½•ï¼");
 		}
 		if(logout.getLogType() != LogRec.LOG_OUT) {
-			throw new RuntimeException("²»ÊÇµÇ³ö¼ÇÂ¼£¡");
+			throw new RuntimeException("ä¸æ˜¯ç™»å‡ºè®°å½•ï¼");
 		}
 		if(!login.getUser().equals(logout.getUser())) {
-			throw new RuntimeException("µÇÂ¼µÇ³ö±ØĞëÊÇÍ¬Ò»ÓÃ»§£¡");
+			throw new RuntimeException("ç™»å½•ç™»å‡ºå¿…é¡»æ˜¯åŒä¸€ç”¨æˆ·ï¼");
 		}
 		if(!login.getIp().equals(logout.getIp())) {
-			throw new RuntimeException("µÇÂ¼µÇ³ö±ØĞëÊÇÍ¬Ò»IPµØÖ·£¡");
+			throw new RuntimeException("ç™»å½•ç™»å‡ºå¿…é¡»æ˜¯åŒä¸€IPåœ°å€ï¼");
 		}
 		this.login = login;
 		this.logout = logout;
 	}
 
-	// ÖØĞ´toString·½·¨
+	// é‡å†™toStringæ–¹æ³•
 	@Override
 	public String toString() {
 		return login.toString() + "|" + logout.toString();

@@ -6,32 +6,32 @@ import java.util.Date;
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName DataBase.java
-* @Description »ù´¡ĞÅÏ¢ÊµÌåÀà
+* @Description åŸºç¡€ä¿¡æ¯å®ä½“ç±»
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019Äê3ÔÂ16ÈÕ ÏÂÎç11:13:20 
-* <p>ĞŞ¸ÄËµÃ÷:</p>
+* @date 2019å¹´3æœˆ16æ—¥ ä¸‹åˆ11:13:20 
+* <p>ä¿®æ”¹è¯´æ˜:</p>
 */
 public class DataBase {
 
-	// ID ±êÊ¶
+	// ID æ ‡è¯†
 	private int id;
-	// Ê±¼ä
+	// æ—¶é—´
 	private Date time;
-	// µØµã
+	// åœ°ç‚¹
 	private String address;
-	// ×´Ì¬
+	// çŠ¶æ€
 	private int type;
 	
-	// ×´Ì¬³£Á¿
-	public static final int GATHER = 1; // ²É¼¯
-	public static final int MATCH = 2; 	// Æ¥Åä
-	public static final int RECORD = 3; // ¼ÇÂ¼
-	public static final int SEND = 4; 	// ·¢ËÍ
-	public static final int RECEIVE = 5; // ½ÓÊÕ
-	public static final int WRITE = 6; 	// ¹éµµ
-	public static final int SAVE = 7; 	// ±£´æ
+	// çŠ¶æ€å¸¸é‡
+	public static final int GATHER = 1; // é‡‡é›†
+	public static final int MATCH = 2; 	// åŒ¹é…
+	public static final int RECORD = 3; // è®°å½•
+	public static final int SEND = 4; 	// å‘é€
+	public static final int RECEIVE = 5; // æ¥æ”¶
+	public static final int WRITE = 6; 	// å½’æ¡£
+	public static final int SAVE = 7; 	// ä¿å­˜
 	
 	public int getId() {
 		return id;

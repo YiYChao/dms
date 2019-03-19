@@ -6,24 +6,24 @@ import java.util.Date;
  * Copyright: Copyright (c) 2019 YiYChao
  * 
  * @ClassName LogRec.java
- * @Description ÈÕÖ¾ÊµÌåÀà£¬ÓÃ»§¼ÇÂ¼ÓÃ»§µÄµÇÂ¼ºÍµÇ³ö×´Ì¬
+ * @Description æ—¥å¿—å®ä½“ç±»ï¼Œç”¨æˆ·è®°å½•ç”¨æˆ·çš„ç™»å½•å’Œç™»å‡ºçŠ¶æ€
  *
  * @version v1.0.0
  * @author YiChao
- * @date 2019Äê3ÔÂ16ÈÕ ÏÂÎç1:37:10
- * <p> ĞŞ¸ÄËµÃ÷: ÊµÏÖÀàµÄ¼Ì³Ğ</p>
+ * @date 2019å¹´3æœˆ16æ—¥ ä¸‹åˆ1:37:10
+ * <p> ä¿®æ”¹è¯´æ˜: å®ç°ç±»çš„ç»§æ‰¿</p>
  */
 public class LogRec extends DataBase{
 
-	// µÇÂ¼ÓÃ»§Ãû
+	// ç™»å½•ç”¨æˆ·å
 	private String user;
-	// µÇÂ¼ÓÃ»§Ö÷»úIPµØÖ·
+	// ç™»å½•ç”¨æˆ·ä¸»æœºIPåœ°å€
 	private String ip;
-	// µÇÂ¼×´Ì¬£ºµÇÂ¼¡¢µÇ³ö
+	// ç™»å½•çŠ¶æ€ï¼šç™»å½•ã€ç™»å‡º
 	private int logType;
 
-	public static final int LOG_IN = 1; 	// µÇÂ¼³£Á¿
-	public static final int LOG_OUT = 0; 	// µÇ³ö³£Á¿
+	public static final int LOG_IN = 1; 	// ç™»å½•å¸¸é‡
+	public static final int LOG_OUT = 0; 	// ç™»å‡ºå¸¸é‡
 
 
 	public String getUser() {
@@ -50,12 +50,12 @@ public class LogRec extends DataBase{
 		this.logType = logType;
 	}
 
-	// ¿Õ¹¹Ôì
+	// ç©ºæ„é€ 
 	public LogRec() {
 		super();
 	}
 
-	// ÓĞ²Î¹¹Ôì
+	// æœ‰å‚æ„é€ 
 	public LogRec(int id, Date time, String address, int type, String user, String ip, int logType) {
 		super(id, time, address, type);
 		this.user = user;
@@ -63,7 +63,7 @@ public class LogRec extends DataBase{
 		this.logType = logType;
 	}
 
-	// ÖØĞ´toString·½·¨
+	// é‡å†™toStringæ–¹æ³•
 	@Override
 	public String toString() {
 		return "LogRec [id=" + this.getId() + ", time=" + this.getTime() + ", address=" + this.getAddress() + ", type=" + this.getType()

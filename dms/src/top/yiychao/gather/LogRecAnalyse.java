@@ -3,27 +3,28 @@ package top.yiychao.gather;
 import top.yiychao.entity.DataBase;
 import top.yiychao.entity.LogRec;
 import top.yiychao.entity.MatchedLogRec;
+import top.yiychao.exception.DataAnalyseException;
 
 /**   
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName LogRecAnalyse.java
-* @Description ÈÕÖ¾Êı¾İ·ÖÎöÀà
+* @Description æ—¥å¿—æ•°æ®åˆ†æç±»
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019Äê3ÔÂ17ÈÕ ÏÂÎç8:42:05 
-* <p>ĞŞ¸ÄËµÃ÷:</p>
+* @date 2019å¹´3æœˆ17æ—¥ ä¸‹åˆ8:42:05 
+* <p>ä¿®æ”¹è¯´æ˜:</p>
 */
 public class LogRecAnalyse extends DataFilter implements IDataAnalyse{
 
-	// µÇÂ¼¼¯ºÏ
+	// ç™»å½•é›†åˆ
 	private LogRec[] logins;
 	
-	// µÇ³ö¼¯ºÏ
+	// ç™»å‡ºé›†åˆ
 	private LogRec[] logouts;
 
-	// ¿Õ¹¹Ôì
+	// ç©ºæ„é€ 
 	public LogRecAnalyse() {
 	}
 	
@@ -35,33 +36,41 @@ public class LogRecAnalyse extends DataFilter implements IDataAnalyse{
 
 	@Override
 	public Object[] matchData() {
-		// ´´½¨ÈÕÖ¾Æ¥ÅäÊı×é
+		// åˆ›å»ºæ—¥å¿—åŒ¹é…æ•°ç»„
 		MatchedLogRec[] matchedLogs = new MatchedLogRec[logins.length];
-		// ÈÕÖ¾Æ¥ÅäÊı×éÏÂ±ê¼ÇÂ¼
+		// æ—¥å¿—åŒ¹é…æ•°ç»„ä¸‹æ ‡è®°å½•
 		int index = 0;
-		// Êı¾İÆ¥Åä·ÖÎö
+		// æ•°æ®åŒ¹é…åˆ†æ
 		for (LogRec in : logins) {
 			for (LogRec out : logouts) {
 				if((in.getUser().equals(out.getUser())) && (in.getIp().equals(out.getIp()) && out.getType() != DataBase.MATCH)) {
-					// ĞŞ¸ÄinºÍoutÈÕÖ¾×´Ì¬ÀàĞÍÎª¡°Æ¥Åä¡±
+					// ä¿®æ”¹inå’Œoutæ—¥å¿—çŠ¶æ€ç±»å‹ä¸ºâ€œåŒ¹é…â€
 					in.setType(DataBase.MATCH);
 					out.setType(DataBase.MATCH);
-					// Ìí¼Óµ½Æ¥ÅäÊı×éÖĞ
+					// æ·»åŠ åˆ°åŒ¹é…æ•°ç»„ä¸­
 					matchedLogs[index++] = new MatchedLogRec(in, out);
 				}
 			}
+		}
+		try {
+			if(index == 0) {
+				// æ²¡æœ‰åŒ¹é…çš„æ•°æ®ï¼Œåˆ™æŠ›å‡ºè‡ªå®šä¹‰å¼‚å¸¸
+				throw new DataAnalyseException("æ²¡æœ‰åŒ¹é…çš„æ—¥å¿—æ•°æ®ï¼");
+			}
+		} catch (DataAnalyseException e) {
+			e.printStackTrace();
 		}
 		return matchedLogs;
 	}
 
 	@Override
 	public void doFilter() {
-		// »ñÈ¡Êı¾İ¼¯ºÏ
+		// è·å–æ•°æ®é›†åˆ
 		LogRec[] logs = (LogRec[]) this.getDatas();
-		// ¸ù¾İÈÕÖ¾µÇÂ¼×´Ì¬Í³¼Æ²»Í¬×´Ì¬µÄÈÕÖ¾¸öÊı
+		// æ ¹æ®æ—¥å¿—ç™»å½•çŠ¶æ€ç»Ÿè®¡ä¸åŒçŠ¶æ€çš„æ—¥å¿—ä¸ªæ•°
 		int numIn = 0;
 		int numOut = 0;
-		// ±éÀúÍ³¼Æ
+		// éå†ç»Ÿè®¡
 		for (LogRec rec : logs) {
 			if(rec.getLogType() == LogRec.LOG_IN) {
 				numIn++;
@@ -69,13 +78,13 @@ public class LogRecAnalyse extends DataFilter implements IDataAnalyse{
 				numOut++;
 			}
 		}
-		// ´´½¨µÇÂ¼¡¢µÇ³öÊı×é
+		// åˆ›å»ºç™»å½•ã€ç™»å‡ºæ•°ç»„
 		logins = new LogRec[numIn];
 		logouts = new LogRec[numOut];
-		// Êı×éĞ¡±ê¼ÇÂ¼
+		// æ•°ç»„å°æ ‡è®°å½•
 		int indexIn = 0;
 		int indexOut = 0;
-		// ±éÀú£¬¶ÔÈÕÖ¾Êı¾İ½øĞĞ¹ıÂË£¬¸ù¾İÈÕÖ¾µÇÂ¼×´Ì¬·Ö±ğ·ÅÔÚ²»Í¬µÄÊı×éÀï
+		// éå†ï¼Œå¯¹æ—¥å¿—æ•°æ®è¿›è¡Œè¿‡æ»¤ï¼Œæ ¹æ®æ—¥å¿—ç™»å½•çŠ¶æ€åˆ†åˆ«æ”¾åœ¨ä¸åŒçš„æ•°ç»„é‡Œ
 		for (LogRec rec : logs) {
 			if(rec.getLogType() == LogRec.LOG_IN) {
 				logins[indexIn++] = rec;

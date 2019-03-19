@@ -9,37 +9,37 @@ import top.yiychao.service.TransportService;
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName LogRecDemo.java
-* @Description 	ÈÕÖ¾²âÊÔÀà£¬ÑİÊ¾ÈÕÖ¾Êı¾İµÄ²É¼¯¼°ÏÔÊ¾
+* @Description 	æ—¥å¿—æµ‹è¯•ç±»ï¼Œæ¼”ç¤ºæ—¥å¿—æ•°æ®çš„é‡‡é›†åŠæ˜¾ç¤º
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019Äê3ÔÂ16ÈÕ ÏÂÎç2:51:28 
-* <p>ĞŞ¸ÄËµÃ÷:</p>
+* @date 2019å¹´3æœˆ16æ—¥ ä¸‹åˆ2:51:28 
+* <p>ä¿®æ”¹è¯´æ˜:</p>
 */
 public class LogRecDemo {
 
 	/**
 	* @Function main
-	* @Description	Ö÷·½·¨£¬ÊµÏÖÈÕÖ¾Êı¾İµÄ²É¼¯¼°ÏÔÊ¾
+	* @Description	ä¸»æ–¹æ³•ï¼Œå®ç°æ—¥å¿—æ•°æ®çš„é‡‡é›†åŠæ˜¾ç¤º
 	*
-	* @param args	ÏµÍ³Ä¬ÈÏ²ÎÊı
-	* @return void	¿Õ
+	* @param args	ç³»ç»Ÿé»˜è®¤å‚æ•°
+	* @return void	ç©º
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019Äê3ÔÂ16ÈÕ ÏÂÎç2:52:25 
-	* <p>ĞŞ¸ÄËµÃ÷:</p>
+	* @date 2019å¹´3æœˆ16æ—¥ ä¸‹åˆ2:52:25 
+	* <p>ä¿®æ”¹è¯´æ˜:</p>
 	 */
 	public static void main(String[] args) {
-		// ´´½¨Ò»¸öÈÕÖ¾ÒµÎñÀà
+		// åˆ›å»ºä¸€ä¸ªæ—¥å¿—ä¸šåŠ¡ç±»
 		LogRecService logRecService = new LogRecService();
-		// ´´½¨Ò»¸öÈÕÖ¾¶ÔÏóÊı×é£¬ÓÃÓÚ´æ·Å²É¼¯µÄÁ½¸öÈÕÖ¾ĞÅÏ¢
+		// åˆ›å»ºä¸€ä¸ªæ—¥å¿—å¯¹è±¡æ•°ç»„ï¼Œç”¨äºå­˜æ”¾é‡‡é›†çš„ä¸¤ä¸ªæ—¥å¿—ä¿¡æ¯
 		LogRec[] logs = new LogRec[2];
 		for(int i = 0; i < logs.length; i++) {
-			System.out.println("µÚ" + ( i + 1) + "¸öÈÕÖ¾Êı¾İ²É¼¯£º");
+			System.out.println("ç¬¬" + ( i + 1) + "ä¸ªæ—¥å¿—æ•°æ®é‡‡é›†ï¼š");
 			logs[i] = logRecService.inputLog();
 		}
-		// ÏÔÊ¾ÈÕÖ¾ĞÅÏ¢
+		// æ˜¾ç¤ºæ—¥å¿—ä¿¡æ¯
 		logRecService.showLog(logs);
 	}
 }

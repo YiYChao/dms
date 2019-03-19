@@ -6,23 +6,23 @@ import java.util.Date;
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName Transport.java
-* @Description ÎïÁ÷ĞÅÏ¢ÊµÌåÀà
+* @Description ç‰©æµä¿¡æ¯å®ä½“ç±»
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019Äê3ÔÂ16ÈÕ ÏÂÎç3:15:03 
-* <p>ĞŞ¸ÄËµÃ÷: ÊµÏÖÀàµÄ¼Ì³Ğ</p>
+* @date 2019å¹´3æœˆ16æ—¥ ä¸‹åˆ3:15:03 
+* <p>ä¿®æ”¹è¯´æ˜: å®ç°ç±»çš„ç»§æ‰¿</p>
 */
 public class Transport extends DataBase{
 
-	// ¾­ÊÖÈË
+	// ç»æ‰‹äºº
 	private String handler;
-	// ÊÕ»õÈË
+	// æ”¶è´§äºº
 	private String receiver;
-	// ÎïÁ÷×´Ì¬
+	// ç‰©æµçŠ¶æ€
 	private int transportType;
 	
-	// ÎïÁ÷×´Ì¬³£Á¿
+	// ç‰©æµçŠ¶æ€å¸¸é‡
 	public static final int SENDING = 1;
 	public static final int TRANSPORTING = 1;
 	public static final int RECEIVED = 1;
@@ -51,12 +51,12 @@ public class Transport extends DataBase{
 		this.transportType = transportType;
 	}
 
-	// ÎŞ²Î¹¹Ôì
+	// æ— å‚æ„é€ 
 	public Transport() {
 		super();
 	}
 
-	// ÓĞ²Î¹¹Ôì
+	// æœ‰å‚æ„é€ 
 	public Transport(int id, Date time, String address, int type, String handler, String receiver, int transportType) {
 		super(id, time, address, type);
 		this.handler = handler;
@@ -64,7 +64,7 @@ public class Transport extends DataBase{
 		this.transportType = transportType;
 	}
 
-	// ÖØĞ´toString·½·¨
+	// é‡å†™toStringæ–¹æ³•
 	@Override
 	public String toString() {
 		return "LogRec [id=" + this.getId() + ", time=" + this.getTime() + ", address=" + this.getAddress() + ", type=" + this.getType()

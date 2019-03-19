@@ -7,25 +7,25 @@ import top.yiychao.service.TransportService;
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName TransportDemo.java
-* @Description ÎïÁ÷²âÊÔÀà£¬ÊµÏÖÎïÁ÷Êı¾İĞÅÏ¢µÄ²É¼¯ºÍÏÔÊ¾
+* @Description ç‰©æµæµ‹è¯•ç±»ï¼Œå®ç°ç‰©æµæ•°æ®ä¿¡æ¯çš„é‡‡é›†å’Œæ˜¾ç¤º
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019Äê3ÔÂ16ÈÕ ÏÂÎç3:37:58 
-* <p>ĞŞ¸ÄËµÃ÷:</p>
+* @date 2019å¹´3æœˆ16æ—¥ ä¸‹åˆ3:37:58 
+* <p>ä¿®æ”¹è¯´æ˜:</p>
 */
 public class TransportDemo {
 
 	public static void main(String[] args) {
-		// ´´½¨ÎïÁ÷ÒµÎñÀà
+		// åˆ›å»ºç‰©æµä¸šåŠ¡ç±»
 		TransportService transportService = new TransportService();
-		// ´´½¨Ò»¸öÎïÁ÷¶ÔÏóÊı×é£¬ÓÃÓÚ´æ·Å²É¼¯µÄÈı¸öÎïÁ÷ĞÅÏ¢
+		// åˆ›å»ºä¸€ä¸ªç‰©æµå¯¹è±¡æ•°ç»„ï¼Œç”¨äºå­˜æ”¾é‡‡é›†çš„ä¸‰ä¸ªç‰©æµä¿¡æ¯
 		Transport[] transports = new Transport[3];
 		for(int i = 0; i < transports.length; i++) {
-			System.out.println("µÚ" + (i + 1) + "¸öÎïÁ÷Êı¾İ²É¼¯:");
+			System.out.println("ç¬¬" + (i + 1) + "ä¸ªç‰©æµæ•°æ®é‡‡é›†:");
 			transports[i] = transportService.inputTransport();
 		}
-		// ÏÔÊ¾ÎïÁ÷ĞÅÏ¢
+		// æ˜¾ç¤ºç‰©æµä¿¡æ¯
 		transportService.showTransport(transports);
 	}
 }

@@ -13,54 +13,54 @@ import top.yiychao.service.TransportService;
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName DataGatherDemo.java
-* @Description ²âÊÔÈÕÖ¾¡¢ÎïÁ÷Êı¾İµÄ·ÖÎö
+* @Description æµ‹è¯•æ—¥å¿—ã€ç‰©æµæ•°æ®çš„åˆ†æ
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019Äê3ÔÂ17ÈÕ ÏÂÎç9:39:01 
-* <p>ĞŞ¸ÄËµÃ÷:</p>
+* @date 2019å¹´3æœˆ17æ—¥ ä¸‹åˆ9:39:01 
+* <p>ä¿®æ”¹è¯´æ˜:</p>
 */
 public class DataGatherDemo {
 
 	public static void main(String[] args) {
-		// ´´½¨Ò»¸öÈÕÖ¾ÒµÎñÀà
+		// åˆ›å»ºä¸€ä¸ªæ—¥å¿—ä¸šåŠ¡ç±»
 		LogRecService logRecService = new LogRecService();
-		// ´´½¨Ò»¸öÈÕÖ¾¶ÔÏóÊı×é£¬ÓÃÓÚ´æ·Å²É¼¯µÄÈı¸öÈÕÖ¾ĞÅÏ¢
+		// åˆ›å»ºä¸€ä¸ªæ—¥å¿—å¯¹è±¡æ•°ç»„ï¼Œç”¨äºå­˜æ”¾é‡‡é›†çš„ä¸‰ä¸ªæ—¥å¿—ä¿¡æ¯
 		LogRec[] logs = new LogRec[3];
 		for(int i = 0; i < logs.length; i++) {
-			System.out.println("µÚ" + ( i + 1) + "¸öÈÕÖ¾Êı¾İ²É¼¯£º");
+			System.out.println("ç¬¬" + ( i + 1) + "ä¸ªæ—¥å¿—æ•°æ®é‡‡é›†ï¼š");
 			logs[i] = logRecService.inputLog();
 		}
-		// ´´½¨ÈÕÖ¾Êı¾İ·ÖÎö¶ÔÏó
+		// åˆ›å»ºæ—¥å¿—æ•°æ®åˆ†æå¯¹è±¡
 		LogRecAnalyse logAn = new LogRecAnalyse(logs);
-		// ÈÕÖ¾Êı¾İ¹ıÂË
+		// æ—¥å¿—æ•°æ®è¿‡æ»¤
 		logAn.doFilter();
-		// ÈÕÖ¾Êı¾İ·ÖÎö
+		// æ—¥å¿—æ•°æ®åˆ†æ
 		Object[] objs = logAn.matchData();
-		// ÅĞ¶ÏobjsÊı×éÊÇ·ñÊÇÅäÖÃÈÕÖ¾Êı×é
+		// åˆ¤æ–­objsæ•°ç»„æ˜¯å¦æ˜¯é…ç½®æ—¥å¿—æ•°ç»„
 		if(objs instanceof MatchedLogRec[]) {
-			// ½«¶ÔÏóÊı×éÇ¿ÖÆÀàĞÍ×ª»»³ÉÅäÖÃÈÕÖ¾Êı×é
+			// å°†å¯¹è±¡æ•°ç»„å¼ºåˆ¶ç±»å‹è½¬æ¢æˆé…ç½®æ—¥å¿—æ•°ç»„
 			MatchedLogRec[] matchedLogs = (MatchedLogRec[]) objs;
 			logRecService.showMathcedLog(matchedLogs);
 		}
 		
-		// ´´½¨ÎïÁ÷ÒµÎñÀà
+		// åˆ›å»ºç‰©æµä¸šåŠ¡ç±»
 		TransportService transportService = new TransportService();
-		// ´´½¨Ò»¸öÎïÁ÷¶ÔÏóÊı×é£¬ÓÃÓÚ´æ·Å²É¼¯µÄÈı¸öÎïÁ÷ĞÅÏ¢
+		// åˆ›å»ºä¸€ä¸ªç‰©æµå¯¹è±¡æ•°ç»„ï¼Œç”¨äºå­˜æ”¾é‡‡é›†çš„ä¸‰ä¸ªç‰©æµä¿¡æ¯
 		Transport[] transports = new Transport[3];
 		for(int i = 0; i < transports.length; i++) {
-			System.out.println("µÚ" + (i + 1) + "¸öÎïÁ÷Êı¾İ²É¼¯:");
+			System.out.println("ç¬¬" + (i + 1) + "ä¸ªç‰©æµæ•°æ®é‡‡é›†:");
 			transports[i] = transportService.inputTransport();
 		}
-		// ´´½¨ÈÕÖ¾Êı¾İ·ÖÎö¶ÔÏó
+		// åˆ›å»ºæ—¥å¿—æ•°æ®åˆ†æå¯¹è±¡
 		TransportAnalyse transAn = new TransportAnalyse(transports);
-		// ÈÕÖ¾Êı¾İ¹ıÂË
+		// æ—¥å¿—æ•°æ®è¿‡æ»¤
 		transAn.doFilter();
-		// ÈÕÖ¾Êı¾İ·ÖÎö
+		// æ—¥å¿—æ•°æ®åˆ†æ
 		objs = transAn.matchData();
-		// ÅĞ¶ÏobjsÊı×éÊÇ·ñÊÇÅäÖÃÈÕÖ¾Êı×é
+		// åˆ¤æ–­objsæ•°ç»„æ˜¯å¦æ˜¯é…ç½®æ—¥å¿—æ•°ç»„
 		if(objs instanceof MathcedTransport[]) {
-			// ½«¶ÔÏóÊı×éÇ¿ÖÆÀàĞÍ×ª»»³ÉÅäÖÃÈÕÖ¾Êı×é
+			// å°†å¯¹è±¡æ•°ç»„å¼ºåˆ¶ç±»å‹è½¬æ¢æˆé…ç½®æ—¥å¿—æ•°ç»„
 			MathcedTransport[] matchedTrans = (MathcedTransport[]) objs;
 			transportService.showMatchTransport(matchedTrans);
 		}

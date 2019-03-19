@@ -6,62 +6,66 @@ import java.util.Scanner;
  * Copyright: Copyright (c) 2019 YiYChao
  * 
  * @ClassName MenuDriver.java
- * @Description ÏÔÊ¾²Ëµ¥
+ * @Description æ˜¾ç¤ºèœå•
  *
  * @version v1.0.0
  * @author YiChao
- * @date 2019Äê3ÔÂ16ÈÕ ÏÂÎç12:18:13
- * <p>ĞŞ¸ÄËµÃ÷:</p>
+ * @date 2019å¹´3æœˆ16æ—¥ ä¸‹åˆ12:18:13
+ * <p>ä¿®æ”¹è¯´æ˜:</p>
  */
 public class MenuDriver {
 
 	/**
 	 * @Function main
-	 * @Description Ö÷·½·¨£¬ÊµÏÖ²Ëµ¥Çı¶¯
+	 * @Description ä¸»æ–¹æ³•ï¼Œå®ç°èœå•é©±åŠ¨
 	 *
-	 * @param args ÏµÍ³Ä¬ÈÏ²ÎÊı
-	 * @return void ¿Õ
+	 * @param args ç³»ç»Ÿé»˜è®¤å‚æ•°
+	 * @return void ç©º
 	 *
 	 * @version v1.0.0
 	 * @author YiChao
-	 * @date 2019Äê3ÔÂ16ÈÕ ÏÂÎç12:23:04
-	 *  <p>ĞŞ¸ÄËµÃ÷: </p>
+	 * @date 2019å¹´3æœˆ16æ—¥ ä¸‹åˆ12:23:04
+	 *  <p>ä¿®æ”¹è¯´æ˜: </p>
 	 */
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		while (true) {
-			// Êä³ö²Ëµ¥
-			System.out.println("****************************************");
-			System.out.println("* 1¡¢Êı¾İ²É¼¯				 2¡¢Êı¾İÆ¥Åä*");
-			System.out.println("* 3¡¢Êı¾İ¼ÇÂ¼				 4¡¢Êı¾İÏÔÊ¾*");
-			System.out.println("* 5¡¢Êı¾İ·¢ËÍ				 0¡¢ÍË³öÓ¦ÓÃ*");
-			System.out.println("****************************************");
-			// ÌáÊ¾ÓÃ»§ÊäÈëÒª²Ù×÷µÄÑ¡Ïî²Ëµ¥
-			System.out.print("ÇëÊäÈë²Ëµ¥Ïî(0~5):");
-			// ½ÓÊÕ¼üÅÌÊäÈëµÄÑ¡Ïî
-			int choice = scanner.nextInt();
-			switch (choice) {
-			case 1:
-				System.out.println("Êı¾İ²É¼¯ÖĞ...");
-				break;
-			case 2:
-				System.out.println("Êı¾İÆ¥ÅäÖĞ...");
-				break;
-			case 3:
-				System.out.println("Êı¾İ¼ÇÂ¼ÖĞ...");
-				break;
-			case 4:
-				System.out.println("Êı¾İÏÔÊ¾ÖĞ...");
-				break;
-			case 5:
-				System.out.println("Êı¾İ·¢ËÍÖĞ...");
-				break;
-			case 0:
-				// Ó¦ÓÃ³ÌĞòÍË³ö
-				System.exit(0);
-			default:
-				System.out.println("ÇëÊäÈëÕıÈ·µÄ²Ëµ¥Ïî(0~5)!");
+		try {
+			while (true) {
+				// è¾“å‡ºèœå•
+				System.out.println("****************************************");
+				System.out.println("* 1ã€æ•°æ®é‡‡é›†				 2ã€æ•°æ®åŒ¹é…*");
+				System.out.println("* 3ã€æ•°æ®è®°å½•				 4ã€æ•°æ®æ˜¾ç¤º*");
+				System.out.println("* 5ã€æ•°æ®å‘é€				 0ã€é€€å‡ºåº”ç”¨*");
+				System.out.println("****************************************");
+				// æç¤ºç”¨æˆ·è¾“å…¥è¦æ“ä½œçš„é€‰é¡¹èœå•
+				System.out.print("è¯·è¾“å…¥èœå•é¡¹(0~5):");
+				// æ¥æ”¶é”®ç›˜è¾“å…¥çš„é€‰é¡¹
+				int choice = scanner.nextInt();
+				switch (choice) {
+				case 1:
+					System.out.println("æ•°æ®é‡‡é›†ä¸­...");
+					break;
+				case 2:
+					System.out.println("æ•°æ®åŒ¹é…ä¸­...");
+					break;
+				case 3:
+					System.out.println("æ•°æ®è®°å½•ä¸­...");
+					break;
+				case 4:
+					System.out.println("æ•°æ®æ˜¾ç¤ºä¸­...");
+					break;
+				case 5:
+					System.out.println("æ•°æ®å‘é€ä¸­...");
+					break;
+				case 0:
+					// åº”ç”¨ç¨‹åºé€€å‡º
+					System.exit(0);
+				default:
+					System.out.println("è¯·è¾“å…¥æ­£ç¡®çš„èœå•é¡¹(0~5)!");
+				}
 			}
+		} catch (Exception e) {
+			System.out.println("æ‚¨è¾“å…¥çš„æ•°æ®ä¸åˆæ³•ï¼");
 		}
 	}
 }

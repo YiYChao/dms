@@ -9,36 +9,36 @@ import top.yiychao.service.TransportService;
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName EntityDataDemo.java
-* @Description ²âÊÔ¼Ì³ĞÖ®ºóµÄ·½·¨
+* @Description æµ‹è¯•ç»§æ‰¿ä¹‹åçš„æ–¹æ³•
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019Äê3ÔÂ16ÈÕ ÏÂÎç11:29:37 
-* <p>ĞŞ¸ÄËµÃ÷:</p>
+* @date 2019å¹´3æœˆ16æ—¥ ä¸‹åˆ11:29:37 
+* <p>ä¿®æ”¹è¯´æ˜:</p>
 */
 public class EntityDataDemo {
 
 	public static void main(String[] args) {
-		// ´´½¨Ò»¸öÈÕÖ¾ÒµÎñÀà
+		// åˆ›å»ºä¸€ä¸ªæ—¥å¿—ä¸šåŠ¡ç±»
 		LogRecService logRecService = new LogRecService();
-		// ´´½¨Ò»¸öÈÕÖ¾¶ÔÏóÊı×é£¬ÓÃÓÚ´æ·Å²É¼¯µÄÁ½¸öÈÕÖ¾ĞÅÏ¢
+		// åˆ›å»ºä¸€ä¸ªæ—¥å¿—å¯¹è±¡æ•°ç»„ï¼Œç”¨äºå­˜æ”¾é‡‡é›†çš„ä¸¤ä¸ªæ—¥å¿—ä¿¡æ¯
 		LogRec[] logs = new LogRec[2];
 		for(int i = 0; i < logs.length; i++) {
-			System.out.println("µÚ" + ( i + 1) + "¸öÈÕÖ¾Êı¾İ²É¼¯£º");
+			System.out.println("ç¬¬" + ( i + 1) + "ä¸ªæ—¥å¿—æ•°æ®é‡‡é›†ï¼š");
 			logs[i] = logRecService.inputLog();
 		}
-		// ÏÔÊ¾ÈÕÖ¾ĞÅÏ¢
+		// æ˜¾ç¤ºæ—¥å¿—ä¿¡æ¯
 		logRecService.showLog(logs);
 		
-		// ´´½¨ÎïÁ÷ÒµÎñÀà
+		// åˆ›å»ºç‰©æµä¸šåŠ¡ç±»
 		TransportService transportService = new TransportService();
-		// ´´½¨Ò»¸öÎïÁ÷¶ÔÏóÊı×é£¬ÓÃÓÚ´æ·Å²É¼¯µÄÈı¸öÎïÁ÷ĞÅÏ¢
+		// åˆ›å»ºä¸€ä¸ªç‰©æµå¯¹è±¡æ•°ç»„ï¼Œç”¨äºå­˜æ”¾é‡‡é›†çš„ä¸‰ä¸ªç‰©æµä¿¡æ¯
 		Transport[] transports = new Transport[3];
 		for(int i = 0; i < transports.length; i++) {
-			System.out.println("µÚ" + (i + 1) + "¸öÎïÁ÷Êı¾İ²É¼¯:");
+			System.out.println("ç¬¬" + (i + 1) + "ä¸ªç‰©æµæ•°æ®é‡‡é›†:");
 			transports[i] = transportService.inputTransport();
 		}
-		// ÏÔÊ¾ÎïÁ÷ĞÅÏ¢
+		// æ˜¾ç¤ºç‰©æµä¿¡æ¯
 		transportService.showTransport(transports);
 		
 	}

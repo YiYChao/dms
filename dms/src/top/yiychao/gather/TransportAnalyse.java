@@ -3,17 +3,18 @@ package top.yiychao.gather;
 import top.yiychao.entity.DataBase;
 import top.yiychao.entity.MathcedTransport;
 import top.yiychao.entity.Transport;
+import top.yiychao.exception.DataAnalyseException;
 
 public class TransportAnalyse extends DataFilter implements IDataAnalyse{
 
-	// ·¢»õ¼¯ºÏ
+	// å‘è´§é›†åˆ
 	private Transport[] transSends;
-	// ËÍ»õ¼¯ºÏ
+	// é€è´§é›†åˆ
 	private Transport[] transIngs;
-	// ÒÑÇ©ÊÕ¼¯ºÏ
+	// å·²ç­¾æ”¶é›†åˆ
 	private Transport[] transRecs;
 	
-	// ¿Õ¹¹Ôì
+	// ç©ºæ„é€ 
 	public TransportAnalyse() {
 	}
 	
@@ -23,11 +24,11 @@ public class TransportAnalyse extends DataFilter implements IDataAnalyse{
 
 	@Override
 	public Object[] matchData() {
-		// ´´½¨ÎïÁ÷Æ¥ÅäÊı×é
+		// åˆ›å»ºç‰©æµåŒ¹é…æ•°ç»„
 		MathcedTransport[] mathcedTrans = new MathcedTransport[transSends.length];
-		// ÈÕÖ¾Æ¥ÅäÊı×éÏÂ±ê¼ÇÂ¼
+		// æ—¥å¿—åŒ¹é…æ•°ç»„ä¸‹æ ‡è®°å½•
 		int index = 0;
-		// Êı¾İÆ¥Åä·ÖÎö
+		// æ•°æ®åŒ¹é…åˆ†æ
 		for (Transport send : transSends) {
 			for (Transport tran : transIngs) {
 				for (Transport rece : transRecs) {
@@ -43,18 +44,26 @@ public class TransportAnalyse extends DataFilter implements IDataAnalyse{
 				
 			}
 		}
+		try {
+			if(index == 0) {
+				// æ²¡æœ‰åŒ¹é…çš„æ•°æ®ï¼Œåˆ™æŠ›å‡ºè‡ªå®šä¹‰å¼‚å¸¸
+				throw new DataAnalyseException("æ²¡æœ‰åŒ¹é…çš„ç‰©æµæ•°æ®ï¼");
+			}
+		} catch (DataAnalyseException e) {
+			e.printStackTrace();
+		}
 		return mathcedTrans;
 	}
 
 	@Override
 	public void doFilter() {
-		//  »ñÈ¡Êı¾İ¼¯ºÏ
+		//  è·å–æ•°æ®é›†åˆ
 		Transport[] trans  = (Transport[]) this.getDatas();
-		// ¸ü¾ßÎïÁ÷×´Ì¬Í³¼Æ²»Í¬×´Ì¬µÄÎïÁ÷¸öÊı
+		// æ›´å…·ç‰©æµçŠ¶æ€ç»Ÿè®¡ä¸åŒçŠ¶æ€çš„ç‰©æµä¸ªæ•°
 		int numSend = 0;
 		int numTran = 0;
 		int numRece = 0;
-		// ±éÀúÍ³¼Æ
+		// éå†ç»Ÿè®¡
 		for (Transport tran : trans) {
 			if(tran.getTransportType() == Transport.SENDING) {
 				numSend++;
@@ -64,15 +73,15 @@ public class TransportAnalyse extends DataFilter implements IDataAnalyse{
 				numRece++;
 			}
 		}
-		// ´´½¨²»Í¬µÄÎïÁ÷Êı×é
+		// åˆ›å»ºä¸åŒçš„ç‰©æµæ•°ç»„
 		transSends = new Transport[numSend];
 		transIngs = new Transport[numTran];
 		transRecs = new Transport[numRece];
-		// Êı×éÏÂ±ê¼ÇÂ¼
+		// æ•°ç»„ä¸‹æ ‡è®°å½•
 		int indexSend = 0;
 		int indexTran = 0;
 		int indexRece = 0;
-		// ±éÀú£¬¶ÔÎïÁ÷Êı×é½øĞĞ¹ıÂË£¬¸ù¾İÎïÁ÷×´Ì¬·Ö±ğ·ÅÔÚ²»Í¬µÄÊı×éÖĞ
+		// éå†ï¼Œå¯¹ç‰©æµæ•°ç»„è¿›è¡Œè¿‡æ»¤ï¼Œæ ¹æ®ç‰©æµçŠ¶æ€åˆ†åˆ«æ”¾åœ¨ä¸åŒçš„æ•°ç»„ä¸­
 		for (Transport tran : trans) {
 			if(tran.getTransportType() == Transport.SENDING) {
 				transSends[indexSend++] = tran;

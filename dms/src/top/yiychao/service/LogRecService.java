@@ -10,67 +10,73 @@ import top.yiychao.entity.MatchedLogRec;
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName LogRecService.java
-* @Description ÈÕÖ¾ÒµÎñÀà£¬ÊµÏÖÈÕÖ¾Êı¾İĞÅÏ¢¶î²É¼¯ºÍÏÔÊ¾¹¦ÄÜ
+* @Description æ—¥å¿—ä¸šåŠ¡ç±»ï¼Œå®ç°æ—¥å¿—æ•°æ®ä¿¡æ¯é¢é‡‡é›†å’Œæ˜¾ç¤ºåŠŸèƒ½
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019Äê3ÔÂ16ÈÕ ÏÂÎç1:53:16 
-* <p>ĞŞ¸ÄËµÃ÷:</p>
+* @date 2019å¹´3æœˆ16æ—¥ ä¸‹åˆ1:53:16 
+* <p>ä¿®æ”¹è¯´æ˜:</p>
 */
 public class LogRecService {
 
 	/**
 	* @Function inputLog
-	* @Description	ÈÕÖ¾Êı¾İ²É¼¯
+	* @Description	æ—¥å¿—æ•°æ®é‡‡é›†
 	*
-	* @return LogRec	ÈÕÖ¾ÊµÌåÀà
+	* @return LogRec	æ—¥å¿—å®ä½“ç±»
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019Äê3ÔÂ16ÈÕ ÏÂÎç1:55:12 
-	* <p>ĞŞ¸ÄËµÃ÷:</p>
+	* @date 2019å¹´3æœˆ16æ—¥ ä¸‹åˆ1:55:12 
+	* <p>ä¿®æ”¹è¯´æ˜:</p>
 	 */
 	public LogRec inputLog() {
-		// ½¨Á¢Ò»¸ö´Ó¼üÅÌ½ÓÊÕÊı¾İµÄÉ¨ÃèÆ÷
+		// å»ºç«‹ä¸€ä¸ªä»é”®ç›˜æ¥æ”¶æ•°æ®çš„æ‰«æå™¨
 		Scanner scanner = new Scanner(System.in);
-		// ÌáÊ¾ÓÃ»§ÊäÈëID±êÊ¶
-		System.out.println("ÇëÊäÈëID±êÊ¶:");
-		int id = scanner.nextInt();
-		// »ñÈ¡ÏµÍ³Ê±¼ä
-		Date nowDate = new Date();
-		// ÌáÊ¾ÓÃ»§ÊäÈëµØÖ·
-		System.out.println("ÇëÊäÈëµØÖ·:");
-		String address = scanner.next();
-		// Êı¾İ×´Ì¬ÊÇ²É¼¯
-		int type = LogRec.GATHER;
-		
-		// ÌáÊ¾ÓÃ»§ÊäÈëÓÃ»§Ãû
-		System.out.println("ÇëÊäÈë µÇÂ¼ÓÃ»§Ãû:");
-		String user = scanner.next();
-		// ÌáÊ¾ÓÃ»§ÊäÈëÖ÷»úIP
-		System.out.println("ÇëÊäÈë Ö÷»úIP:");
-		String ip = scanner.next();
-		// ÌáÊ¾ÓÃ»§ÊıÊäÈëµÇÂ¼¡¢µÇ³ö×´Ì¬
-		System.out.println("ÇëÊäÈëµÇÂ¼×´Ì¬: 1ÊÇµÇÂ¼, 2ÊÇµÇ³ö");
-		int logType = scanner.nextInt();
-		
-		// ´´½¨ÈÕÖ¾¶ÔÏó
-		LogRec log = new LogRec(id, nowDate, address, type, user, ip, logType);
-		// ·µ»ØÈÕÖ¾¶ÔÏó
+		// åˆ›å»ºæ—¥å¿—å¯¹è±¡
+		LogRec log = null;
+		try {
+			// æç¤ºç”¨æˆ·è¾“å…¥IDæ ‡è¯†
+			System.out.println("è¯·è¾“å…¥IDæ ‡è¯†:");
+			int id = scanner.nextInt();
+			// è·å–ç³»ç»Ÿæ—¶é—´
+			Date nowDate = new Date();
+			// æç¤ºç”¨æˆ·è¾“å…¥åœ°å€
+			System.out.println("è¯·è¾“å…¥åœ°å€:");
+			String address = scanner.next();
+			// æ•°æ®çŠ¶æ€æ˜¯é‡‡é›†
+			int type = LogRec.GATHER;
+			
+			// æç¤ºç”¨æˆ·è¾“å…¥ç”¨æˆ·å
+			System.out.println("è¯·è¾“å…¥ ç™»å½•ç”¨æˆ·å:");
+			String user = scanner.next();
+			// æç¤ºç”¨æˆ·è¾“å…¥ä¸»æœºIP
+			System.out.println("è¯·è¾“å…¥ ä¸»æœºIP:");
+			String ip = scanner.next();
+			// æç¤ºç”¨æˆ·æ•°è¾“å…¥ç™»å½•ã€ç™»å‡ºçŠ¶æ€
+			System.out.println("è¯·è¾“å…¥ç™»å½•çŠ¶æ€: 1æ˜¯ç™»å½•, 2æ˜¯ç™»å‡º");
+			int logType = scanner.nextInt();
+			
+			// åˆå§‹åŒ–æ—¥å¿—å¯¹è±¡
+			log = new LogRec(id, nowDate, address, type, user, ip, logType);
+		} catch (Exception e) {
+			System.out.println("é‡‡é›†çš„æ—¥å¿—ä¿¡æ¯ä¸åˆæ³•ï¼");
+		}
+		// è¿”å›æ—¥å¿—å¯¹è±¡
 		return log;
 	}
 	
 	/**
 	* @Function showLog
-	* @Description	Êä³öÈÕÖ¾ĞÅÏ¢
+	* @Description	è¾“å‡ºæ—¥å¿—ä¿¡æ¯
 	*
-	* @param logRecs	²»¶¨²ÎÊı
-	* @return void	¿Õ
+	* @param logRecs	ä¸å®šå‚æ•°
+	* @return void	ç©º
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019Äê3ÔÂ16ÈÕ ÏÂÎç1:57:42 
-	* <p>ĞŞ¸ÄËµÃ÷:</p>
+	* @date 2019å¹´3æœˆ16æ—¥ ä¸‹åˆ1:57:42 
+	* <p>ä¿®æ”¹è¯´æ˜:</p>
 	 */
 	public void showLog(LogRec...logRecs ) {
 		for (LogRec log : logRecs) {
@@ -82,16 +88,16 @@ public class LogRecService {
 	
 	/**
 	* @Function showMathcedLog
-	* @Description	Êä³öÆ¥ÅäÈÕÖ¾ĞÅÏ¢
+	* @Description	è¾“å‡ºåŒ¹é…æ—¥å¿—ä¿¡æ¯
 	*
-	* @param matchedLogRecs	ÈÕÖ¾ĞÅÏ¢Æ¥ÅäÊµÌå£¬²»¶¨²ÎÊı
-	* @return void	¿Õ
-	* @throws	ÔËĞĞÊ±Òì³£
+	* @param matchedLogRecs	æ—¥å¿—ä¿¡æ¯åŒ¹é…å®ä½“ï¼Œä¸å®šå‚æ•°
+	* @return void	ç©º
+	* @throws	è¿è¡Œæ—¶å¼‚å¸¸
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019Äê3ÔÂ17ÈÕ ÉÏÎç12:07:34 
-	* <p>ĞŞ¸ÄËµÃ÷:</p>
+	* @date 2019å¹´3æœˆ17æ—¥ ä¸Šåˆ12:07:34 
+	* <p>ä¿®æ”¹è¯´æ˜:</p>
 	 */
 	public void showMathcedLog(MatchedLogRec...matchedLogRecs) {
 		for (MatchedLogRec matchedLogRec : matchedLogRecs) {

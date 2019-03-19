@@ -11,55 +11,61 @@ import top.yiychao.entity.Transport;
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName TransportService.java
-* @Description ÎïÁ÷ÒµÎñÀà£¬ÊµÏÖÎïÁ÷Êı¾İĞÅÏ¢µÄ²É¼¯¼°ÏÔÊ¾¹¦ÄÜ
+* @Description ç‰©æµä¸šåŠ¡ç±»ï¼Œå®ç°ç‰©æµæ•°æ®ä¿¡æ¯çš„é‡‡é›†åŠæ˜¾ç¤ºåŠŸèƒ½
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019Äê3ÔÂ16ÈÕ ÏÂÎç3:27:14 
-* <p>ĞŞ¸ÄËµÃ÷:</p>
+* @date 2019å¹´3æœˆ16æ—¥ ä¸‹åˆ3:27:14 
+* <p>ä¿®æ”¹è¯´æ˜:</p>
 */
 public class TransportService {
 
 	public Transport inputTransport() {
-		// ½¨Á¢Ò»¸ö´Ó¼üÅÌ½ÓÊÕÊı¾İµÄÉ¨ÃèÆ÷
+		// å»ºç«‹ä¸€ä¸ªä»é”®ç›˜æ¥æ”¶æ•°æ®çš„æ‰«æå™¨
 		Scanner scanner = new Scanner(System.in);
-		// ÌáÊ¾ÓÃ»§ÊäÈëID±êÊ¶
-		System.out.println("ÇëÊäÈëID±êÊ¶:");
-		int id = scanner.nextInt();
-		// »ñÈ¡ÏµÍ³Ê±¼ä
-		Date nowDate = new Date();
-		// ÌáÊ¾ÓÃ»§ÊäÈëµØÖ·
-		System.out.println("ÇëÊäÈëµØÖ·:");
-		String address = scanner.next();
-		// Êı¾İ×´Ì¬ÊÇ²É¼¯
-		int type = LogRec.GATHER;
-		
-		// ÌáÊ¾ÓÃ»§ÊäÈë»õÎï¾­ÊÖÈË
-		System.out.println("ÇëÊäÈë »õÎï¾­ÊÖÈË:");
-		String handler = scanner.next();
-		// ÌáÊ¾ÓÃ»§ÊäÈëÊÕ»õÈË
-		System.out.println("ÇëÊäÈë ÊÕ»õÈË:");
-		String receiver = scanner.next();
-		// ÌáÊ¾ÓÃ»§ÊıÊäÈëÎïÁ÷×´Ì¬
-		System.out.println("ÇëÊäÈëÎïÁ÷×´Ì¬: 1·¢»õÖĞ, 2ËÍ»õÖĞ, 3ÒÑÇ©ÊÕ");
-		int transportType = scanner.nextInt();
-		
-		// ´´½¨ÎïÁ÷ĞÅÏ¢¶ÔÏó
-		Transport transport = new Transport(id, nowDate, address, type, handler, receiver, transportType);
+		// åˆ›å»ºç‰©æµä¿¡æ¯å¯¹è±¡
+		Transport transport = null;
+		try {
+			// æç¤ºç”¨æˆ·è¾“å…¥IDæ ‡è¯†
+			System.out.println("è¯·è¾“å…¥IDæ ‡è¯†:");
+			int id = scanner.nextInt();
+			// è·å–ç³»ç»Ÿæ—¶é—´
+			Date nowDate = new Date();
+			// æç¤ºç”¨æˆ·è¾“å…¥åœ°å€
+			System.out.println("è¯·è¾“å…¥åœ°å€:");
+			String address = scanner.next();
+			// æ•°æ®çŠ¶æ€æ˜¯é‡‡é›†
+			int type = LogRec.GATHER;
+			
+			// æç¤ºç”¨æˆ·è¾“å…¥è´§ç‰©ç»æ‰‹äºº
+			System.out.println("è¯·è¾“å…¥ è´§ç‰©ç»æ‰‹äºº:");
+			String handler = scanner.next();
+			// æç¤ºç”¨æˆ·è¾“å…¥æ”¶è´§äºº
+			System.out.println("è¯·è¾“å…¥ æ”¶è´§äºº:");
+			String receiver = scanner.next();
+			// æç¤ºç”¨æˆ·æ•°è¾“å…¥ç‰©æµçŠ¶æ€
+			System.out.println("è¯·è¾“å…¥ç‰©æµçŠ¶æ€: 1å‘è´§ä¸­, 2é€è´§ä¸­, 3å·²ç­¾æ”¶");
+			int transportType = scanner.nextInt();
+			
+			// åˆå§‹åŒ–ç‰©æµä¿¡æ¯å¯¹è±¡
+			transport = new Transport(id, nowDate, address, type, handler, receiver, transportType);
+		} catch (Exception e) {
+			System.out.println("é‡‡é›†çš„æ—¥å¿—ä¿¡æ¯ä¸åˆæ³•ï¼");
+		}
 		return transport;
 	}
 	
 	/**
 	* @Function showTransport
-	* @Description	Êä³öÏÔÊ¾ÎïÁ÷ĞÅÏ¢
+	* @Description	è¾“å‡ºæ˜¾ç¤ºç‰©æµä¿¡æ¯
 	*
-	* @param transports	²»¶¨²ÎÊı£¬ÎïÁ÷ĞÅÏ¢ÊµÌåÀà
-	* @return void	¿Õ
+	* @param transports	ä¸å®šå‚æ•°ï¼Œç‰©æµä¿¡æ¯å®ä½“ç±»
+	* @return void	ç©º
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019Äê3ÔÂ16ÈÕ ÏÂÎç3:36:19 
-	* <p>ĞŞ¸ÄËµÃ÷:</p>
+	* @date 2019å¹´3æœˆ16æ—¥ ä¸‹åˆ3:36:19 
+	* <p>ä¿®æ”¹è¯´æ˜:</p>
 	 */
 	public void showTransport(Transport...transports ) {
 		for (Transport transport : transports) {
@@ -71,16 +77,16 @@ public class TransportService {
 	
 	/**
 	* @Function showMatchTransport
-	* @Description	Êä³öÆ¥ÅäµÄÎïÁ÷ĞÅÏ¢
+	* @Description	è¾“å‡ºåŒ¹é…çš„ç‰©æµä¿¡æ¯
 	*
-	* @param mathcedTransports	ÎïÁ÷ĞÅÏ¢Æ¥ÅäÊµÌå£¬²»¶¨²ÎÊı
-	* @return void	¿Õ
-	* @throws	ÔËĞĞÊ±Òì³£
+	* @param mathcedTransports	ç‰©æµä¿¡æ¯åŒ¹é…å®ä½“ï¼Œä¸å®šå‚æ•°
+	* @return void	ç©º
+	* @throws	è¿è¡Œæ—¶å¼‚å¸¸
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019Äê3ÔÂ17ÈÕ ÉÏÎç12:05:45 
-	* <p>ĞŞ¸ÄËµÃ÷:</p>
+	* @date 2019å¹´3æœˆ17æ—¥ ä¸Šåˆ12:05:45 
+	* <p>ä¿®æ”¹è¯´æ˜:</p>
 	 */
 	public void showMatchTransport(MathcedTransport...mathcedTransports) {
 		for (MathcedTransport mathcedTransport : mathcedTransports) {

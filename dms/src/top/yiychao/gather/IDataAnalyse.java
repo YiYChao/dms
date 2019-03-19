@@ -4,26 +4,26 @@ package top.yiychao.gather;
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName IDataAnalyse.java
-* @Description Êı¾İ·ÖÎö½Ó¿Ú
+* @Description æ•°æ®åˆ†ææ¥å£
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019Äê3ÔÂ17ÈÕ ÏÂÎç8:34:31 
-* <p>ĞŞ¸ÄËµÃ÷:</p>
+* @date 2019å¹´3æœˆ17æ—¥ ä¸‹åˆ8:34:31 
+* <p>ä¿®æ”¹è¯´æ˜:</p>
 */
 public interface IDataAnalyse {
 
 	/**
 	* @Function matchData
-	* @Description	½øĞĞÊı¾İÆ¥Åä
+	* @Description	è¿›è¡Œæ•°æ®åŒ¹é…
 	*
 	* @return
 	* @return Object[]
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019Äê3ÔÂ17ÈÕ ÏÂÎç8:36:15 
-	* <p>ĞŞ¸ÄËµÃ÷:</p>
+	* @date 2019å¹´3æœˆ17æ—¥ ä¸‹åˆ8:36:15 
+	* <p>ä¿®æ”¹è¯´æ˜:</p>
 	 */
 	Object[] matchData();
 }
