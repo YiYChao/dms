@@ -1,5 +1,7 @@
 package top.yiychao.gather;
 
+import java.util.ArrayList;
+
 /**   
 * Copyright: Copyright (c) 2019 YiYChao
 * 
@@ -23,7 +25,7 @@ public interface IDataAnalyse {
 	* @version v1.0.0
 	* @author YiChao
 	* @date 2019年3月17日 下午8:36:15 
-	* <p>修改说明:</p>
+	* <p>修改说明:使用泛型迭代升级数据分析接口</p>
 	 */
-	Object[] matchData();
+	ArrayList<?> matchData();
 }

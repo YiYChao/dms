@@ -1,5 +1,6 @@
 package top.yiychao.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -15,7 +16,7 @@ import top.yiychao.entity.MatchedLogRec;
 * @version v1.0.0
 * @author YiChao
 * @date 2019年3月16日 下午1:53:16 
-* <p>修改说明:</p>
+* <p>修改说明:增加显示泛型集合数据的功能</p>
 */
 public class LogRecService {
 
@@ -100,6 +101,27 @@ public class LogRecService {
 	* <p>修改说明:</p>
 	 */
 	public void showMathcedLog(MatchedLogRec...matchedLogRecs) {
+		for (MatchedLogRec matchedLogRec : matchedLogRecs) {
+			if(matchedLogRec != null) {
+				System.out.println(matchedLogRec.toString());
+			}
+		}
+	}
+	
+	/**
+	 * @Function showMathcedLog
+	 * @Description	输出匹配日志信息
+	 *
+	 * @param matchedLogRecs	日志信息匹配实体，集合泛型
+	 * @return void	空
+	 * @throws	运行时异常
+	 *
+	 * @version v1.0.0
+	 * @author YiChao
+	 * @date 2019年3月19日 下午5:27:34 
+	 * <p>修改说明:</p>
+	 */
+	public void showMathcedLog(ArrayList<MatchedLogRec> matchedLogRecs) {
 		for (MatchedLogRec matchedLogRec : matchedLogRecs) {
 			if(matchedLogRec != null) {
 				System.out.println(matchedLogRec.toString());

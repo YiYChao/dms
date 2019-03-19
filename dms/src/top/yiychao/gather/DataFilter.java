@@ -1,5 +1,7 @@
 package top.yiychao.gather;
 
+import java.util.ArrayList;
+
 import top.yiychao.entity.DataBase;
 
 /**   
@@ -16,20 +18,20 @@ import top.yiychao.entity.DataBase;
 public abstract class DataFilter {
 
 	// 数据集合
-	private DataBase[] datas;
+	private ArrayList<? extends DataBase> datas;
 
-	public DataBase[] getDatas() {
+	public ArrayList<? extends DataBase> getDatas() {
 		return datas;
 	}
 
-	public void setDatas(DataBase[] datas) {
+	public void setDatas(ArrayList<? extends DataBase> datas) {
 		this.datas = datas;
 	}
 
 	public DataFilter() {
 	}
 
-	public DataFilter(DataBase[] datas) {
+	public DataFilter(ArrayList<? extends DataBase> datas) {
 		this.datas = datas;
 	}
 	

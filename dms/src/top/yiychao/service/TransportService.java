@@ -1,5 +1,6 @@
 package top.yiychao.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -16,7 +17,7 @@ import top.yiychao.entity.Transport;
 * @version v1.0.0
 * @author YiChao
 * @date 2019年3月16日 下午3:27:14 
-* <p>修改说明:</p>
+* <p>修改说明:增加显示泛型集合数据的功能</p>
 */
 public class TransportService {
 
@@ -89,6 +90,27 @@ public class TransportService {
 	* <p>修改说明:</p>
 	 */
 	public void showMatchTransport(MathcedTransport...mathcedTransports) {
+		for (MathcedTransport mathcedTransport : mathcedTransports) {
+			if(mathcedTransport != null) {
+				System.out.println(mathcedTransport.toString());
+			}
+		}
+	}
+	
+	/**
+	 * @Function showMatchTransport
+	 * @Description	输出匹配的物流信息
+	 *
+	 * @param mathcedTransports	物流信息匹配实体，泛型集合
+	 * @return void	空
+	 * @throws	运行时异常
+	 *
+	 * @version v1.0.0
+	 * @author YiChao
+	 * @date 2019年3月19日 下午5:29:45 
+	 * <p>修改说明:</p>
+	 */
+	public void showMatchTransport(ArrayList<MathcedTransport> mathcedTransports) {
 		for (MathcedTransport mathcedTransport : mathcedTransports) {
 			if(mathcedTransport != null) {
 				System.out.println(mathcedTransport.toString());
