@@ -1,10 +1,15 @@
 package top.yiychao.service;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
 import top.yiychao.entity.LogRec;
+import top.yiychao.entity.MatchedLogRec;
 import top.yiychao.entity.MathcedTransport;
 import top.yiychao.entity.Transport;
 
@@ -116,5 +121,57 @@ public class TransportService {
 				System.out.println(mathcedTransport.toString());
 			}
 		}
+	}
+	
+	/**
+	 * @Function showMathcedLog
+	 * @Description	匹配物流信息保存到文件
+	 *
+	 * @param matchedLogs	物流信息匹配实体，集合泛型
+	 * @return void	空
+	 * @throws	无
+	 *
+	 * @version v1.0.0
+	 * @author YiChao
+	 * @date 2019年3月21日 下午3:25:34 
+	 * <p>修改说明:</p>
+	 */
+	public void saveMatchTrab(ArrayList<MathcedTransport> matchTrans) {
+		try (ObjectOutputStream obs = new ObjectOutputStream(new FileOutputStream("MatchTrans.txt",true))){
+			for (MathcedTransport mathcedTransport : matchTrans) {
+				if( mathcedTransport != null) {
+					obs.writeObject(mathcedTransport);
+					obs.flush();
+				}
+			}
+			obs.writeObject(null);
+			obs.flush();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * @Function showMathcedLog
+	 * @Description	读取保存到文件的匹配物流信息
+	 *
+	 * @return 物流信息匹配实体，集合泛型
+	 * @throws	无
+	 *
+	 * @version v1.0.0
+	 * @author YiChao
+	 * @date 2019年3月21日 下午3:30:34 
+	 * <p>修改说明:</p>
+	 */
+	public ArrayList<MathcedTransport> readMatchTran() {
+		ArrayList<MathcedTransport> matchTrans = new ArrayList<MathcedTransport>();
+		try (ObjectInputStream obs = new ObjectInputStream(new FileInputStream("MatchTrans.txt"))){
+			MathcedTransport matchTran;
+			while((matchTran = (MathcedTransport)obs.readObject()) != null) {
+				matchTrans.add(matchTran);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return matchTrans;
 	}
 }

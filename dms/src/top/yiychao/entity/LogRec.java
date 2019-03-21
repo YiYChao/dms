@@ -1,5 +1,6 @@
 package top.yiychao.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
  * @date 2019年3月16日 下午1:37:10
  * <p> 修改说明: 实现类的继承</p>
  */
-public class LogRec extends DataBase{
+public class LogRec extends DataBase implements Serializable{
 
 	// 登录用户名
 	private String user;

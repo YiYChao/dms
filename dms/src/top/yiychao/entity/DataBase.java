@@ -1,5 +1,6 @@
 package top.yiychao.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**   
@@ -13,7 +14,7 @@ import java.util.Date;
 * @date 2019年3月16日 下午11:13:20 
 * <p>修改说明:</p>
 */
-public class DataBase {
+public class DataBase implements Serializable{
 
 	// ID 标识
 	private int id;

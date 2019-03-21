@@ -1,5 +1,7 @@
 package top.yiychao.entity;
 
+import java.io.Serializable;
+
 /**   
 * Copyright: Copyright (c) 2019 YiYChao
 * 
@@ -11,7 +13,7 @@ package top.yiychao.entity;
 * @date 2019年3月16日 下午11:54:21 
 * <p>修改说明:</p>
 */
-public class MathcedTransport {
+public class MathcedTransport implements Serializable{
 
 	private Transport send;
 	private Transport trans;

@@ -1,5 +1,6 @@
 package top.yiychao.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**   
@@ -13,7 +14,7 @@ import java.util.Date;
 * @date 2019年3月16日 下午11:36:29 
 * <p>修改说明:</p>
 */
-public class MatchedLogRec {
+public class MatchedLogRec implements Serializable{
 
 	private LogRec login;	// 登录日志
 	private LogRec logout;	// 登出日志

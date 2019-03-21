@@ -1,5 +1,9 @@
 package top.yiychao.service;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -16,7 +20,7 @@ import top.yiychao.entity.MatchedLogRec;
 * @version v1.0.0
 * @author YiChao
 * @date 2019年3月16日 下午1:53:16 
-* <p>修改说明:增加显示泛型集合数据的功能</p>
+* <p>修改说明:增加显示泛型集合数据的功能，增加文件的读写</p>
 */
 public class LogRecService {
 
@@ -128,4 +132,60 @@ public class LogRecService {
 			}
 		}
 	}
+	
+	/**
+	 * @Function showMathcedLog
+	 * @Description	匹配日志信息保存到文件
+	 *
+	 * @param matchedLogs	日志信息匹配实体，集合泛型
+	 * @return void	空
+	 * @throws	无
+	 *
+	 * @version v1.0.0
+	 * @author YiChao
+	 * @date 2019年3月21日 下午3:15:34 
+	 * <p>修改说明:</p>
+	 */
+	public void saveMatchLog(ArrayList<MatchedLogRec> matchLogs) {
+		try (ObjectOutputStream obs = new ObjectOutputStream(new FileOutputStream("MatchLogs.txt",true))){
+			
+			for (MatchedLogRec matchedLogRec : matchLogs) {
+				if(matchedLogRec != null) {
+					obs.writeObject(matchedLogRec);
+					obs.flush();
+				}
+			}
+			// 文件末尾保存一个null对象，代表文件结束
+			obs.writeObject(null);
+			obs.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * @Function showMathcedLog
+	 * @Description	读取保存到文件的匹配日志信息
+	 *
+	 * @return ArrayList<MatchedLogRec>	集合泛型
+	 * @throws	无
+	 *
+	 * @version v1.0.0
+	 * @author YiChao
+	 * @date 2019年3月21日 下午3:20:34 
+	 * <p>修改说明:</p>
+	 */
+	public ArrayList<MatchedLogRec> readMatchLog() {
+		ArrayList<MatchedLogRec> matchLogs = new ArrayList<MatchedLogRec>();
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("MatchLogs.txt"))){
+			MatchedLogRec logRec;
+			while((logRec = (MatchedLogRec)ois.readObject()) != null) {
+				matchLogs.add(logRec);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return matchLogs;
+	}
+	
 }

@@ -1,5 +1,6 @@
 package top.yiychao.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**   
@@ -13,7 +14,7 @@ import java.util.Date;
 * @date 2019年3月16日 下午3:15:03 
 * <p>修改说明: 实现类的继承</p>
 */
-public class Transport extends DataBase{
+public class Transport extends DataBase implements Serializable{
 
 	// 经手人
 	private String handler;
@@ -24,8 +25,8 @@ public class Transport extends DataBase{
 	
 	// 物流状态常量
 	public static final int SENDING = 1;
-	public static final int TRANSPORTING = 1;
-	public static final int RECEIVED = 1;
+	public static final int TRANSPORTING = 2;
+	public static final int RECEIVED = 3;
 	
 	public String getHandler() {
 		return handler;
@@ -67,7 +68,7 @@ public class Transport extends DataBase{
 	// 重写toString方法
 	@Override
 	public String toString() {
-		return "LogRec [id=" + this.getId() + ", time=" + this.getTime() + ", address=" + this.getAddress() + ", type=" + this.getType()
+		return "Transport [id=" + this.getId() + ", time=" + this.getTime() + ", address=" + this.getAddress() + ", type=" + this.getType()
 				+ ", handler=" + handler + ", receiver=" + receiver + ", transportType=" + transportType + "]";
 	}
 }
