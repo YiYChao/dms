@@ -134,7 +134,7 @@ public class LogRecService {
 	}
 	
 	/**
-	 * @Function showMathcedLog
+	 * @Function saveMatchLog
 	 * @Description	匹配日志信息保存到文件
 	 *
 	 * @param matchedLogs	日志信息匹配实体，集合泛型
@@ -147,7 +147,7 @@ public class LogRecService {
 	 * <p>修改说明:</p>
 	 */
 	public void saveMatchLog(ArrayList<MatchedLogRec> matchLogs) {
-		try (ObjectOutputStream obs = new ObjectOutputStream(new FileOutputStream("MatchLogs.txt",true))){
+		try (ObjectOutputStream obs = new ObjectOutputStream(new FileOutputStream("temp/MatchLogs.txt",true))){
 			
 			for (MatchedLogRec matchedLogRec : matchLogs) {
 				if(matchedLogRec != null) {
@@ -164,7 +164,7 @@ public class LogRecService {
 	}
 	
 	/**
-	 * @Function showMathcedLog
+	 * @Function readMatchLog
 	 * @Description	读取保存到文件的匹配日志信息
 	 *
 	 * @return ArrayList<MatchedLogRec>	集合泛型
@@ -177,7 +177,7 @@ public class LogRecService {
 	 */
 	public ArrayList<MatchedLogRec> readMatchLog() {
 		ArrayList<MatchedLogRec> matchLogs = new ArrayList<MatchedLogRec>();
-		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("MatchLogs.txt"))){
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("temp/MatchLogs.txt"))){
 			MatchedLogRec logRec;
 			while((logRec = (MatchedLogRec)ois.readObject()) != null) {
 				matchLogs.add(logRec);
@@ -187,5 +187,4 @@ public class LogRecService {
 		}
 		return matchLogs;
 	}
-	
 }

@@ -124,7 +124,7 @@ public class TransportService {
 	}
 	
 	/**
-	 * @Function showMathcedLog
+	 * @Function saveMatchTrab
 	 * @Description	匹配物流信息保存到文件
 	 *
 	 * @param matchedLogs	物流信息匹配实体，集合泛型
@@ -137,7 +137,7 @@ public class TransportService {
 	 * <p>修改说明:</p>
 	 */
 	public void saveMatchTrab(ArrayList<MathcedTransport> matchTrans) {
-		try (ObjectOutputStream obs = new ObjectOutputStream(new FileOutputStream("MatchTrans.txt",true))){
+		try (ObjectOutputStream obs = new ObjectOutputStream(new FileOutputStream("temp/MatchTrans.txt",true))){
 			for (MathcedTransport mathcedTransport : matchTrans) {
 				if( mathcedTransport != null) {
 					obs.writeObject(mathcedTransport);
@@ -151,7 +151,7 @@ public class TransportService {
 		}
 	}
 	/**
-	 * @Function showMathcedLog
+	 * @Function readMatchTran
 	 * @Description	读取保存到文件的匹配物流信息
 	 *
 	 * @return 物流信息匹配实体，集合泛型
@@ -164,7 +164,7 @@ public class TransportService {
 	 */
 	public ArrayList<MathcedTransport> readMatchTran() {
 		ArrayList<MathcedTransport> matchTrans = new ArrayList<MathcedTransport>();
-		try (ObjectInputStream obs = new ObjectInputStream(new FileInputStream("MatchTrans.txt"))){
+		try (ObjectInputStream obs = new ObjectInputStream(new FileInputStream("temp/MatchTrans.txt"))){
 			MathcedTransport matchTran;
 			while((matchTran = (MathcedTransport)obs.readObject()) != null) {
 				matchTrans.add(matchTran);
