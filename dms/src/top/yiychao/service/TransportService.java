@@ -4,14 +4,19 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+
+import com.sun.jmx.snmp.Timestamp;
 
 import top.yiychao.entity.LogRec;
 import top.yiychao.entity.MatchedLogRec;
 import top.yiychao.entity.MathcedTransport;
 import top.yiychao.entity.Transport;
+import top.yiychao.util.DBUtils;
 
 /**   
 * Copyright: Copyright (c) 2019 YiYChao
@@ -174,4 +179,86 @@ public class TransportService {
 		}
 		return matchTrans;
 	}
+	
+	/**
+	 * @Function saveMatchTran2DB
+	 * @Description	保存匹配物流信息到数据库
+	 *
+	 * @param matchTrans 集合泛型
+	 * @throws	
+	 *
+	 * @version v1.0.0
+	 * @author YiChao
+	 * @date 2019年3月22日 上午11:12:20
+	 * <p>修改说明:</p>
+	 */
+	public void saveMatchTran2DB(ArrayList<MathcedTransport> matchTrans) {
+		DBUtils db = new DBUtils();
+		try {
+			db.getConnection();	// 获得数据库连接
+			for (MathcedTransport matchedTran : matchTrans) {
+				Transport send = matchedTran.getSend();
+				Transport trans = matchedTran.getTrans();
+				Transport receive = matchedTran.getReceive();
+				
+				String sql = "INSERT INTO gather_transport(id, time, address, type, handler, receiver, transport_type) VALUES(?,?,?,?,?,?,?) ";
+				
+				Object[] param = new Object[] {send.getId(), new java.sql.Timestamp(send.getTime().getTime()), send.getAddress(), send.getType(),
+						send.getHandler(),send.getReceiver(),send.getTransportType()};
+				db.executeUpdate(sql, param);
+				
+				param = new Object[] {trans.getId(), new java.sql.Timestamp(trans.getTime().getTime()), trans.getAddress(), trans.getType(),
+						trans.getHandler(),trans.getReceiver(),trans.getTransportType()};
+				db.executeUpdate(sql, param);
+				
+				param = new Object[] {receive.getId(), new java.sql.Timestamp(receive.getTime().getTime()), receive.getAddress(), receive.getType(),
+						receive.getHandler(),receive.getReceiver(),receive.getTransportType()};
+				db.executeUpdate(sql, param);
+				
+				// 保存匹配日志的Id
+				sql = "INSERT INTO matched_transport(send_id, trans_id, received_id) VALUES(?,?,?)";
+				param = new Object[] {send.getId(), trans.getId(), receive.getId()};
+				db.executeUpdate(sql, param);
+			}
+			db.closeAll();	// 关闭数据库连接，释放资源
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * @Function readMatchedLogFromDB
+	 * @Description	从数据库读取匹配的物流信息
+	 *
+	 * @return
+	 * @throws	
+	 *
+	 * @version v1.0.0
+	 * @author YiChao
+	 * @date 2019年3月22日 上午11:13:14
+	 * <p>修改说明:</p>
+	 */
+	public ArrayList<MathcedTransport> readMatchedTrabFromDB(){
+		ArrayList<MathcedTransport> matchedTrans = new ArrayList<MathcedTransport>();
+		DBUtils db = new DBUtils();
+		try {
+			db.getConnection();
+			String sql  = "SELECT s.id, s.time, s.address, s.type, s.handler, s.receiver, s.transport_type,t.id, t.time, t.address, t.type, t.handler, t.receiver, t.transport_type,"
+					+ "r.id, r.time, r.address, r.type, r.handler, r.receiver, r.transport_type "
+					+ "FROM matched_transport m, gather_transport s, gather_transport t,gather_transport r WHERE m.send_id=s.id AND m.trans_id=t.id AND m.received_id=r.id";
+			ResultSet rs = db.executeQuery(sql, null);
+			while(rs.next()) {
+				Transport send = new Transport(rs.getInt(1), rs.getDate(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7));
+				Transport tans = new Transport(rs.getInt(8), rs.getDate(9), rs.getString(10), rs.getInt(11), rs.getString(12), rs.getString(13), rs.getInt(14));
+				Transport receive = new Transport(rs.getInt(15), rs.getDate(16), rs.getString(17), rs.getInt(18), rs.getString(19), rs.getString(20), rs.getInt(21));
+				
+				matchedTrans.add(new MathcedTransport(send, tans, receive));	// 添加匹配登录信息到集合
+			}
+			db.closeAll(); 	// 释放资源
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return matchedTrans;
+	}
+	
 }
