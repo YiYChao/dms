@@ -219,7 +219,6 @@ public class LogRecService {
 				String sql = "INSERT INTO gather_logrec(id, time, address, type, username, ip, logtype) VALUES(?,?,?,?,?,?,?) ";
 				Object[] param = new Object[] {login.getId(),java.sql.Timestamp.valueOf(format.format(login.getTime())), login.getAddress(), login.getType(),
 						login.getUser(),login.getIp(), login.getLogType()};
-				System.out.println("测试结果：" + format.format(login.getTime()));
 				db.executeUpdate(sql, param);
 				
 				param = new Object[] {logout.getId(), java.sql.Timestamp.valueOf(format.format(logout.getTime())), logout.getAddress(), logout.getType(),
