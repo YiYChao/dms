@@ -68,7 +68,7 @@ public class UserService {
 		DBUtils db = new DBUtils();
 		try {
 			db.getConnection();
-			String sql  = "insert into user(usernaem,password,sex,hobby,address,degree) values(?,?,?,?,?,?)";
+			String sql  = "insert into user(username,password,sex,hobby,address,degree) values(?,?,?,?,?,?)";
 			Object[] param = new Object[] {user.getUsername(),user.getPassword(),user.getSex(),user.getHobby(),user.getAddress(),user.getDegree()};
 			int rs = db.executeUpdate(sql, param);	// Ö´ÐÐÌí¼Ó
 			if(rs > 0) {
