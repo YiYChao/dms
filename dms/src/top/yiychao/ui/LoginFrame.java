@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -18,12 +19,12 @@ import top.yiychao.service.UserService;
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName LoginFrame.java
-* @Description ÓÃ»§µÇÂ¼´°¿Ú
+* @Description ç”¨æˆ·ç™»å½•çª—å£
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019Äê3ÔÂ25ÈÕ ÏÂÎç10:21:21 
-* <p>ĞŞ¸ÄËµÃ÷:</p>
+* @date 2019å¹´3æœˆ25æ—¥ ä¸‹åˆ10:21:21 
+* <p>ä¿®æ”¹è¯´æ˜:</p>
 */
 public class LoginFrame extends JFrame{
 	private JPanel panel;
@@ -36,26 +37,26 @@ public class LoginFrame extends JFrame{
 	private UserService userService;
 	
 	public LoginFrame() {
-		super("DMS-ÓÃ»§µÇÂ¼");
+		super("DMS-ç”¨æˆ·ç™»å½•");
 		userService = new UserService();
 		ImageIcon icon = new ImageIcon("images/dms.png");
 		this.setIconImage(icon.getImage());
 
-		// ÊµÀı»¯×é¼ş
+		// å®ä¾‹åŒ–ç»„ä»¶
 		panel = new JPanel();
 		panel.setLayout(null);
 		
-		lbName = new JLabel("ÓÃ»§Ãû:");
-		lbPwd = new JLabel("ÃÜ     Âë:");
+		lbName = new JLabel("ç”¨æˆ·å:");
+		lbPwd = new JLabel("å¯†     ç :");
 		txtName = new JTextField(20);
 		txtPwd = new JPasswordField(20);
 		txtPwd.setEchoChar('*');
 		
-		btnOK = new JButton("µÇÂ¼");
+		btnOK = new JButton("ç™»å½•");
 		btnOK.addActionListener(new LoginListener());
-		btnReset = new JButton("ÖØÖÃ");
+		btnReset = new JButton("é‡ç½®");
 		btnReset.addActionListener(new ResetListener());
-		btnRegist = new JButton("×¢²á");
+		btnRegist = new JButton("æ³¨å†Œ");
 		btnRegist.addActionListener(new RegistListener());
 		
 		lbName.setBounds(30, 30, 60, 25);
@@ -86,12 +87,12 @@ public class LoginFrame extends JFrame{
 	* Copyright: Copyright (c) 2019 YiYChao
 	* 
 	* @ClassName LoginListener.java
-	* @Description µÇÂ¼°´Å¥¼àÌı
+	* @Description ç™»å½•æŒ‰é’®ç›‘å¬
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019Äê3ÔÂ25ÈÕ ÏÂÎç10:43:12 
-	* <p>ĞŞ¸ÄËµÃ÷:</p>
+	* @date 2019å¹´3æœˆ25æ—¥ ä¸‹åˆ10:43:12 
+	* <p>ä¿®æ”¹è¯´æ˜:</p>
 	*/
 	public class LoginListener implements ActionListener{
 		@Override
@@ -102,11 +103,13 @@ public class LoginFrame extends JFrame{
 					LoginFrame.this.setVisible(false);
 					new MainFrame();
 				}else {
-					System.out.println("ÓÃ»§Ãû»òÃÜÂë´íÎó£¡");
+//					System.out.println("ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯ï¼");
+					JOptionPane.showMessageDialog(null, "å¯†ç é”™è¯¯ï¼è¯·é‡æ–°è¾“å…¥ï¼", "é”™è¯¯æç¤º", JOptionPane.ERROR_MESSAGE);
 					txtPwd.setText("");
 				}
 			}else {
-				System.out.println("¸ÃÓÃ»§²»´æÔÚ£¬ÇëÏÈ×¢²á£¡");
+//				System.out.println("è¯¥ç”¨æˆ·ä¸å­˜åœ¨ï¼Œè¯·å…ˆæ³¨å†Œï¼");
+				JOptionPane.showMessageDialog(null, "è¯¥ç”¨æˆ·ä¸å­˜åœ¨ï¼Œè¯·å…ˆæ³¨å†Œï¼", "é”™è¯¯æç¤º", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
@@ -115,12 +118,12 @@ public class LoginFrame extends JFrame{
 	* Copyright: Copyright (c) 2019 YiYChao
 	* 
 	* @ClassName ResetListener.java
-	* @Description ÖØÖÃ°´Å¥¼àÌı
+	* @Description é‡ç½®æŒ‰é’®ç›‘å¬
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019Äê3ÔÂ25ÈÕ ÏÂÎç10:47:39 
-	* <p>ĞŞ¸ÄËµÃ÷:</p>
+	* @date 2019å¹´3æœˆ25æ—¥ ä¸‹åˆ10:47:39 
+	* <p>ä¿®æ”¹è¯´æ˜:</p>
 	*/
 	public class ResetListener implements ActionListener{
 		@Override
@@ -134,12 +137,12 @@ public class LoginFrame extends JFrame{
 	* Copyright: Copyright (c) 2019 YiYChao
 	* 
 	* @ClassName RegiserListener.java
-	* @Description ×¢²á°´Å¥¼àÌı
+	* @Description æ³¨å†ŒæŒ‰é’®ç›‘å¬
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019Äê3ÔÂ25ÈÕ ÏÂÎç10:50:57 
-	* <p>ĞŞ¸ÄËµÃ÷:</p>
+	* @date 2019å¹´3æœˆ25æ—¥ ä¸‹åˆ10:50:57 
+	* <p>ä¿®æ”¹è¯´æ˜:</p>
 	*/
 	public class RegistListener implements ActionListener{
 		@Override

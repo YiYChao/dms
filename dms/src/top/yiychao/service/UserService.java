@@ -10,58 +10,58 @@ import top.yiychao.util.DBUtils;
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName UserService.java
-* @Description ÓÃ»§ÒµÎñÂß¼­
+* @Description ç”¨æˆ·ä¸šåŠ¡é€»è¾‘
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019Äê3ÔÂ23ÈÕ ÏÂÎç4:04:10 
-* <p>ĞŞ¸ÄËµÃ÷:</p>
+* @date 2019å¹´3æœˆ23æ—¥ ä¸‹åˆ4:04:10 
+* <p>ä¿®æ”¹è¯´æ˜:</p>
 */
 public class UserService {
 
 	/**
 	* @Function findUserByName
-	* @Description	Í¨¹ıÓÃ»§Ãû²éÑ¯ÓÃ»§
+	* @Description	é€šè¿‡ç”¨æˆ·åæŸ¥è¯¢ç”¨æˆ·
 	*
-	* @param username	ÓÃ»§Ãû
-	* @return User ÓÃ»§ÊµÌå
+	* @param username	ç”¨æˆ·å
+	* @return User ç”¨æˆ·å®ä½“
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019Äê3ÔÂ23ÈÕ ÏÂÎç4:11:47 
-	* <p>ĞŞ¸ÄËµÃ÷:</p>
+	* @date 2019å¹´3æœˆ23æ—¥ ä¸‹åˆ4:11:47 
+	* <p>ä¿®æ”¹è¯´æ˜:</p>
 	 */
 	public User findUserByName(String username) {
 		User user = null;
 		DBUtils db = new DBUtils();
 		try {
-			db.getConnection();	// »ñµÃÁ¬½Ó
+			db.getConnection();	// è·å¾—è¿æ¥
 			String sql = "SELECT * FROM user WHERE username = ?";
-			// ÉèÖÃ²ÎÊı
-			Object[] param = new Object[] {username};	// ÉèÖÃ²ÎÊı
-			ResultSet rs = db.executeQuery(sql, param);	// Ö´ĞĞ²éÑ¯
+			// è®¾ç½®å‚æ•°
+			Object[] param = new Object[] {username};	// è®¾ç½®å‚æ•°
+			ResultSet rs = db.executeQuery(sql, param);	// æ‰§è¡ŒæŸ¥è¯¢
 			if(rs.next()) {
 				user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			db.closeAll(); 	// ÊÍ·ÅÊı¾İ¿â×ÊÔ´
+			db.closeAll(); 	// é‡Šæ”¾æ•°æ®åº“èµ„æº
 		}
 		return user;
 	}
 	
 	/**
 	* @Function saveUser
-	* @Description Ìí¼ÓÓÃ»§
+	* @Description æ·»åŠ ç”¨æˆ·
 	*
-	* @param user ÓÃ»§ÊµÌå
-	* @return ·µ»Ø²¼¶ûÀàĞÍµÄ½á¹û£¬³É¹¦true£¬Ê§°Üfalse
+	* @param user ç”¨æˆ·å®ä½“
+	* @return è¿”å›å¸ƒå°”ç±»å‹çš„ç»“æœï¼ŒæˆåŠŸtrueï¼Œå¤±è´¥false
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019Äê3ÔÂ23ÈÕ ÏÂÎç4:19:08 
-	* <p>ĞŞ¸ÄËµÃ÷:</p>
+	* @date 2019å¹´3æœˆ23æ—¥ ä¸‹åˆ4:19:08 
+	* <p>ä¿®æ”¹è¯´æ˜:</p>
 	 */
 	public boolean saveUser(User user) {
 		boolean flag = false;
@@ -70,14 +70,14 @@ public class UserService {
 			db.getConnection();
 			String sql  = "insert into user(username,password,sex,hobby,address,degree) values(?,?,?,?,?,?)";
 			Object[] param = new Object[] {user.getUsername(),user.getPassword(),user.getSex(),user.getHobby(),user.getAddress(),user.getDegree()};
-			int rs = db.executeUpdate(sql, param);	// Ö´ĞĞÌí¼Ó
+			int rs = db.executeUpdate(sql, param);	// æ‰§è¡Œæ·»åŠ 
 			if(rs > 0) {
-				flag = true;	// Ìí¼Ó³É¹¦£¬ÉèÖÃ·µ»ØÖµÎªtrue
+				flag = true;	// æ·»åŠ æˆåŠŸï¼Œè®¾ç½®è¿”å›å€¼ä¸ºtrue
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			db.closeAll(); 	// ÊÍ·Å×ÊÔ´
+			db.closeAll(); 	// é‡Šæ”¾èµ„æº
 		}
 		return flag;
 	}

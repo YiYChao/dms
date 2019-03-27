@@ -4,12 +4,12 @@ package top.yiychao.entity;
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName User.java
-* @Description ÓÃ»§ÊµÌå
+* @Description ç”¨æˆ·å®ä½“ç±»
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019Äê3ÔÂ23ÈÕ ÏÂÎç4:03:25 
-* <p>ĞŞ¸ÄËµÃ÷:</p>
+* @date 201å¹´3æœˆ23æ—¥ ä¸‹åˆ4:03:25 
+* <p>ä¿®æ”¹è¯´æ˜:</p>
 */
 public class User {
 

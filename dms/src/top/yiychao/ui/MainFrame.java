@@ -7,17 +7,17 @@ import javax.swing.JFrame;
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName MainFrame.java
-* @Description Ö÷´°¿Ú
+* @Description ä¸»çª—å£
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019Äê3ÔÂ25ÈÕ ÏÂÎç10:11:21 
-* <p>ĞŞ¸ÄËµÃ÷:</p>
+* @date 2019å¹´3æœˆ25æ—¥ ä¸‹åˆ10:11:21 
+* <p>ä¿®æ”¹è¯´æ˜:</p>
 */
 public class MainFrame extends JFrame{
 
 	public MainFrame() {
-		super("DMS¿Í»§¶ËÏµÍ³");
+		super("DMSå®¢æˆ·ç«¯ç³»ç»Ÿ");
 		ImageIcon icon = new ImageIcon("images/dms.png");
 		this.setIconImage(icon.getImage());
 		

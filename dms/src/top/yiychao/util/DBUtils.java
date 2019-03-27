@@ -1,15 +1,4 @@
 package top.yiychao.util;
-/**   
-* Copyright: Copyright (c) 2019 YiYChao
-* 
-* @ClassName DBUtils.java
-* @Description 鏁版嵁搴撹闂伐鍏风被
-*
-* @version v1.0.0
-* @author YiChao
-* @date 2019骞�3鏈�21鏃� 涓嬪崍5:13:29
-* <p>淇敼璇存槑:</p>
-*/
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,12 +9,12 @@ import java.sql.SQLException;
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName DBUtils.java
-* @Description 鏁版嵁搴撹闂伐鍏风被
+* @Description 数据库工具类
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019骞�3鏈�21鏃� 涓嬪崍5:39:37 
-* <p>淇敼璇存槑:</p>
+* @date 2019年3月21日 下午5:13:29
+* <p>修改说明:</p>
 */
 public class DBUtils {
 
@@ -35,14 +24,14 @@ public class DBUtils {
 	
 	/**
 	* @Function getConnection
-	* @Description	鑾峰緱鏁版嵁搴撹繛鎺�
+	* @Description	获得连接
 	*
-	* @return Connection	鑾峰緱鐨勮繛鎺�
+	* @return Connection	返回连接对象
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019骞�3鏈�21鏃� 涓嬪崍5:43:25 
-	* <p>淇敼璇存槑:</p>
+	* @date 2019年3é月21日 下午5:43:25 
+	* <p>修改说明:</p>
 	 */
 	public Connection getConnection() throws SQLException {
 		String driver = Config.getValue("driver");
@@ -50,27 +39,27 @@ public class DBUtils {
 		String user = Config.getValue("user");
 		String password = Config.getValue("password");
 		try {
-			Class.forName(driver);	//	鎸囧畾鏁版嵁搴撻┍鍔ㄧ▼搴�
+			Class.forName(driver);	//	指定驱动程序
 			conn = DriverManager.getConnection(url, user, password);
 			return conn;
 		} catch (Exception e) {
-			throw new SQLException("椹卞姩閿欒鎴栬繛鎺ュけ璐ワ紒");
+			throw new SQLException("连接失败！");
 		}		
 	}
 	
 	/**
 	* @Function closeAll
-	* @Description	閲婃斁璧勬簮
+	* @Description	释放资源
 	*
-	* @return void	绌�
+	* @return void	空
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019骞�3鏈�22鏃� 涓婂崍9:13:25 
-	* <p>淇敼璇存槑:</p>
+	* @date 2019年3月22日 下午9:13:25 
+	* <p>æ·î½æ¼çå­æ§:</p>
 	 */
 	public void closeAll() {
-		// 濡傛灉rs涓嶄负绌猴紝鍏抽棴rs
+		// 如果rs不为空，关闭rs
 		if(rs != null) {
 			try {
 				rs.close();
@@ -78,7 +67,7 @@ public class DBUtils {
 				e.printStackTrace();
 			}
 		}
-		// 濡傛灉pstm涓嶇┖锛屽叧闂璸stm
+		// 如果pstm不为空，关闭pstm
 		if(pstm != null) {
 			try {
 				pstm.close();
@@ -86,7 +75,7 @@ public class DBUtils {
 				e.printStackTrace();
 			}
 		}
-		// 濡傛灉conn涓嶄负绌猴紝鍏抽棴conn
+		// 如果conn不为空，关闭conn
 		if(conn != null) {
 			try {
 				conn.close();
@@ -98,27 +87,27 @@ public class DBUtils {
 	
 	/**
 	* @Function executeQuery
-	* @Description	杩涜鏌ヨ鎿嶄綔
+	* @Description	执行查询
 	* 
-	* @param preparedSql
-	* @param param 鍙傛暟瀵硅薄
-	* @return void	绌�
+	* @param preparedSql 预编译sql
+	* @param param 参数数组
+	* @return ResultSet	结果集
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019骞�3鏈�22鏃� 涓婂崍9:13:25 
-	* <p>淇敼璇存槑:</p>
+	* @date 2019年3月22日 下午9:13:25 
+	* <p>修改说明:</p>
 	 */
 	public ResultSet executeQuery(String preparedSql, Object[] param) {
 		try {
-			pstm = conn.prepareStatement(preparedSql);	// 鑾峰緱prepareStatement瀵硅薄
+			pstm = conn.prepareStatement(preparedSql);	// é¾å³°ç·±prepareStatementçµç¡è
 			if(param != null) {
 				for(int i = 0; i < param.length; i++) {
-					// 涓洪缂栬瘧SQL璁剧疆鍙傛暟
+					// 为预编译sql设置参数
 					pstm.setObject(i + 1, param[i]);
 				}
 			}
-			rs = pstm.executeQuery();	// 鎵цSQL璇彞
+			rs = pstm.executeQuery();	// 执行查询
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -127,16 +116,16 @@ public class DBUtils {
 	
 	/**
 	* @Function executeUpdate
-	* @Description	鎵ц澧炲垹鏀圭殑鎿嶄綔
+	* @Description	执行修改，增、删、改操作
 	* 
-	* @param preparedSql
-	* @param param 鍙傛暟瀵硅薄
-	* @return void	绌�
+	* @param preparedSql 预编译slq
+	* @param param 参数数组
+	* @return int	操作结果
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019骞�3鏈�22鏃� 涓婂崍9:33:25 
-	* <p>淇敼璇存槑:</p>
+	* @date 2019年3月22日 下午9:33:25 
+	* <p>修改说明:</p>
 	 */
 	public int executeUpdate(String preparedSql, Object[] param) {
 		int num = 0;
@@ -144,11 +133,11 @@ public class DBUtils {
 			pstm = conn.prepareStatement(preparedSql);
 			if(param != null) {
 				for(int i = 0; i < param.length; i++) {
-					// 涓洪缂栬瘧SQL璁剧疆鍙傛暟
+					// 为预编译sql设置参数
 					pstm.setObject(i + 1, param[i]);
 				}
 			}
-			num = pstm.executeUpdate();	// 鎵ц鏇存柊鎿嶄綔
+			num = pstm.executeUpdate();	// 执行sql语句
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

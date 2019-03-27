@@ -12,6 +12,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -25,12 +26,12 @@ import top.yiychao.service.UserService;
 * Copyright: Copyright (c) 2019 YiYChao
 * 
 * @ClassName RegistFrame.java
-* @Description ÓÃ»§×¢²á´°¿Ú
+* @Description ç”¨æˆ·æ³¨å†Œçª—å£
 *
 * @version v1.0.0
 * @author YiChao
-* @date 2019Äê3ÔÂ23ÈÕ ÏÂÎç4:21:41 
-* <p>ĞŞ¸ÄËµÃ÷:</p>
+* @date 2019å¹´3æœˆ23æ—¥ ä¸‹åˆ4:21:41 
+* <p>ä¿®æ”¹è¯´æ˜:</p>
 */
 public class RegistFrame extends JFrame{
 
@@ -47,51 +48,51 @@ public class RegistFrame extends JFrame{
 	private static UserService userService;
 	
 	public RegistFrame() {
-		super("ÓÃ»§×¢²á");
+		super("ç”¨æˆ·æ³¨å†Œ");
 		userService = new UserService();
 		ImageIcon icon = new ImageIcon("images/dms.png");
-		this.setIconImage(icon.getImage());	// ÉèÖÃ´°ÌåÍ¼±ê
-		// ÉèÖÃÃæ°åÎªÍø¸ñ²¼¾Ö
+		this.setIconImage(icon.getImage());	// è®¾ç½®çª—ä½“å›¾æ ‡
+		// è®¾ç½®é¢æ¿ä¸ºç½‘æ ¼å¸ƒå±€
 		panel = new JPanel(new GridLayout(8, 1));
-		// ÊµÀı»¯×é¼ş
-		lbName = new JLabel("ÓÃ  »§  Ãû:");
-		lbPwd = new JLabel("ÃÜ        Âë:");
-		lbRePwd = new JLabel("È·ÈÏÃÜÂë:");
-		lbSex = new JLabel("ĞÔ         ±ğ:");
-		lbHobby = new JLabel("°®         ºÃ:");
-		lbAddr = new JLabel("µØ         Ö·:");
-		lbDegree = new JLabel("Ñ§         Àú:");
+		// å®ä¾‹åŒ–ç»„ä»¶
+		lbName = new JLabel("ç”¨  æˆ·  å:");
+		lbPwd = new JLabel("å¯†        ç :");
+		lbRePwd = new JLabel("ç¡®è®¤å¯†ç :");
+		lbSex = new JLabel("æ€§         åˆ«:");
+		lbHobby = new JLabel("çˆ±         å¥½:");
+		lbAddr = new JLabel("åœ°         å€:");
+		lbDegree = new JLabel("å­¦         å†:");
 		
 		txtName = new JTextField(16);
 		txtPwd = new JPasswordField(16);
 		txtRePwd = new JPasswordField(16);
-		rbMale = new JRadioButton("ÄĞ");
-		rbFemale = new JRadioButton("Å®");
+		rbMale = new JRadioButton("ç”·");
+		rbFemale = new JRadioButton("å¥³");
 		
-		// ĞÔ±ğµÄµ¥Ñ¡Âß¼­
+		// æ€§åˆ«çš„å•é€‰é€»è¾‘
 		ButtonGroup group = new ButtonGroup();
 		group.add(rbMale);
 		group.add(rbFemale);
 		
-		ckbRead = new JCheckBox("ÔÄ¶Á");
-		ckbNet = new JCheckBox("ÉÏÍø");
-		ckbSwin = new JCheckBox("ÓÎÓ¾");
-		ckbTour = new JCheckBox("ÂÃÓÎ");
+		ckbRead = new JCheckBox("é˜…è¯»");
+		ckbNet = new JCheckBox("ä¸Šç½‘");
+		ckbSwin = new JCheckBox("æ¸¸æ³³");
+		ckbTour = new JCheckBox("æ—…æ¸¸");
 		
 		txtAddr = new JTextArea(3,20);
 		
-		String[] str = new String[]{"Ğ¡Ñ§","³õÖĞ","¸ßÖĞ","±¾¿Æ","Ë¶Ê¿","²©Ê¿"};
+		String[] str = new String[]{"å°å­¦","åˆä¸­","é«˜ä¸­","æœ¬ç§‘","ç¡•å£«","åšå£«"};
 		cmbDegree = new JComboBox<String>(str);
-		cmbDegree.setEditable(true); 	// ÉèÖÃ×éºÏ¿ò¿É±à¼­
+		cmbDegree.setEditable(true); 	// è®¾ç½®ç»„åˆæ¡†å¯ç¼–è¾‘
 		
-		btnOK = new JButton("È·¶¨");
+		btnOK = new JButton("ç¡®å®š");
 		btnOK.addActionListener(new RegisterListener());
-		btnReset = new JButton("ÖØÖÃ");
+		btnReset = new JButton("é‡ç½®");
 		btnReset.addActionListener(new ResetListener());
-		btnBack = new JButton("·µ»Ø");
+		btnBack = new JButton("è¿”å›");
 		btnBack.addActionListener(new BackListener());
 		
-		// ½«×é¼ş·Ö±ğ·ÅÈëÃæ°å£¬È»ºó½«Ãæ°å·ÅÈëÖ÷Ãæ°å
+		// å°†ç»„ä»¶åˆ†åˆ«æ”¾å…¥é¢æ¿ï¼Œç„¶åå°†é¢æ¿æ”¾å…¥ä¸»é¢æ¿
 		JPanel p1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		p1.add(lbName);
 		p1.add(txtName);
@@ -150,36 +151,41 @@ public class RegistFrame extends JFrame{
 	* Copyright: Copyright (c) 2019 YiYChao
 	* 
 	* @ClassName RegisterListener.java
-	* @Description ÓÃ»§×¢²á°´Å¥¼àÌıÆ÷
+	* @Description ç”¨æˆ·æ³¨å†ŒæŒ‰é’®ç›‘å¬å™¨
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019Äê3ÔÂ25ÈÕ ÏÂÎç9:18:41 
-	* <p>ĞŞ¸ÄËµÃ÷:</p>
+	* @date 2019å¹´3æœˆ25æ—¥ ä¸‹åˆ9:18:41 
+	* <p>ä¿®æ”¹è¯´æ˜:</p>
 	*/
 	private class RegisterListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			String userName = txtName.getText().trim();	// ÓÃ»§Ãû
-			String password = new String(txtPwd.getPassword());	// ÃÜÂë¿ò
+			String userName = txtName.getText().trim();	// ç”¨æˆ·å
+			String password = new String(txtPwd.getPassword());	// å¯†ç æ¡†
 			String rePassword = new String(txtRePwd.getPassword());
-			int sex = Integer.parseInt(rbFemale.isSelected() ? "0" : "1");	// ĞÔ±ğµ¥Ñ¡¿ò
-			String hobby = (ckbRead.isSelected() ? "ÔÄ¶Á," : "")
-					+ (ckbNet.isSelected() ? "ÉÏÍø," : "")
-					+ (ckbSwin.isSelected() ? "ÓÎÓ¾," : "")
-					+ (ckbTour.isSelected() ? "ÂÃÓÎ" : "");	// °®ºÃ¸´Ñ¡¿ò
+			int sex = Integer.parseInt(rbFemale.isSelected() ? "0" : "1");	// æ€§åˆ«å•é€‰æ¡†
+			String hobby = (ckbRead.isSelected() ? "é˜…è¯»," : "")
+					+ (ckbNet.isSelected() ? "ä¸Šç½‘," : "")
+					+ (ckbSwin.isSelected() ? "æ¸¸æ³³," : "")
+					+ (ckbTour.isSelected() ? "æ—…æ¸¸" : "");	// çˆ±å¥½å¤é€‰æ¡†
 			String address = txtAddr.getText().trim();
-			String degree = cmbDegree.getSelectedItem().toString().trim();	// Ñ§ÀúÏÂÀ­¿ò
-			// ÅĞ¶ÏÁ½´ÎÊäÈëÃÜÂëÊÇ·ñÒ»ÖÂ
+			String degree = cmbDegree.getSelectedItem().toString().trim();	// å­¦å†ä¸‹æ‹‰æ¡†
+			// åˆ¤æ–­ä¸¤æ¬¡è¾“å…¥å¯†ç æ˜¯å¦ä¸€è‡´
 			if(password.equals(rePassword)) {
 				user = new User(userName, password, sex, hobby, address, degree);
 				if(userService.saveUser(user)) {
-					System.out.println("×¢²á³É¹¦£¡");
+//					System.out.println("æ³¨å†ŒæˆåŠŸï¼");
+					JOptionPane.showMessageDialog(null, "æ³¨å†ŒæˆåŠŸï¼", "æˆåŠŸæç¤ºï¼", JOptionPane.PLAIN_MESSAGE);
+					cleanContent();
 				}else {
-					System.out.println("×¢²áÊ§°Ü£¡");
+//					System.out.println("æ³¨å†Œå¤±è´¥ï¼");
+					JOptionPane.showMessageDialog(null, "æ³¨å†Œå¤±è´¥ï¼", "é”™è¯¯æç¤ºï¼", JOptionPane.ERROR_MESSAGE);
+					cleanContent();
 				}
 			}else {
-				System.out.println("Á½´ÎÊäÈëÃÜÂë²»Ò»ÖÂ£¡");
+//				System.out.println("ä¸¤æ¬¡è¾“å…¥å¯†ç ä¸ä¸€è‡´ï¼");
+				JOptionPane.showMessageDialog(null, "ä¸¤æ¬¡è¾“å…¥å¯†ç ä¸ä¸€è‡´ï¼", "é”™è¯¯æç¤ºï¼", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		
@@ -189,30 +195,17 @@ public class RegistFrame extends JFrame{
 	* Copyright: Copyright (c) 2019 YiYChao
 	* 
 	* @ClassName ResetListener.java
-	* @Description ÖØÖÃ°´Å¥¼àÌıÆ÷
+	* @Description é‡ç½®æŒ‰é’®ç›‘å¬å™¨
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019Äê3ÔÂ25ÈÕ ÏÂÎç9:34:43 
-	* <p>ĞŞ¸ÄËµÃ÷:</p>
+	* @date 2019å¹´3æœˆ25æ—¥ ä¸‹åˆ9:34:43 
+	* <p>ä¿®æ”¹è¯´æ˜:</p>
 	*/
 	public class ResetListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			txtName.setText("");
-			txtPwd.setText("");
-			txtRePwd.setText("");
-			
-			rbMale.setSelected(false);
-			rbFemale.setSelected(false);
-			
-			ckbRead.setSelected(false);
-			ckbNet.setSelected(false);
-			ckbSwin.setSelected(false);
-			ckbTour.setSelected(false);
-			
-			txtAddr.setText("");
-			cmbDegree.setSelectedIndex(0);;
+			cleanContent();
 		}
 		
 	}
@@ -221,12 +214,12 @@ public class RegistFrame extends JFrame{
 	* Copyright: Copyright (c) 2019 YiYChao
 	* 
 	* @ClassName BackListener.java
-	* @Description ·µ»Ø°´Å¥¼àÌıÆ÷
+	* @Description è¿”å›æŒ‰é’®ç›‘å¬å™¨
 	*
 	* @version v1.0.0
 	* @author YiChao
-	* @date 2019Äê3ÔÂ25ÈÕ ÏÂÎç9:39:43 
-	* <p>ĞŞ¸ÄËµÃ÷:</p>
+	* @date 2019å¹´3æœˆ25æ—¥ ä¸‹åˆ9:39:43 
+	* <p>ä¿®æ”¹è¯´æ˜:</p>
 	*/
 	public class BackListener implements ActionListener{
 		@Override
@@ -238,7 +231,35 @@ public class RegistFrame extends JFrame{
 		
 	}
 	
-	public static void main(String[] args) {
-		new RegistFrame();
+	/**
+	* @Function cleanContent
+	* @Description æ¸…ç©ºè¡¨å•
+	*
+	* @version v1.0.0
+	* @author YiChao
+	* @date 2019å¹´3æœˆ27æ—¥ ä¸‹åˆ10:38:53 
+	* <p>ä¿®æ”¹è¯´æ˜:</p>
+	 */
+	private void cleanContent() {
+		txtName.setText("");
+		txtPwd.setText("");
+		txtRePwd.setText("");
+		
+		rbMale.setSelected(false);
+		rbFemale.setSelected(false);
+		
+		ckbRead.setSelected(false);
+		ckbNet.setSelected(false);
+		ckbSwin.setSelected(false);
+		ckbTour.setSelected(false);
+		
+		txtAddr.setText("");
+		cmbDegree.setSelectedIndex(0);
 	}
+	
+	
+	
+//	public static void main(String[] args) {
+//		new RegistFrame();
+//	}
 }
