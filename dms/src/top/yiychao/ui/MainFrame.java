@@ -116,6 +116,8 @@ public class MainFrame extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
+		// 开启更新表格数据的线程
+		new UpdateTableThread().start();
 	}
 	
 	/**
@@ -221,7 +223,7 @@ public class MainFrame extends JFrame{
 		btnGather.addActionListener(new MatchTranListener());
 		toolBar.add(btnGather);
 		
-		ImageIcon saveIcon = new ImageIcon("images/ saveData.png");
+		ImageIcon saveIcon = new ImageIcon("images/saveData.png");
 		btnSave = new JButton("保存数据", saveIcon);
 		btnSave.addActionListener(new SaveDataListener());
 		toolBar.add(btnSave);
@@ -608,5 +610,34 @@ public class MainFrame extends JFrame{
 		JTable transTable = new JTable(transModel);
 		scrollPane = new JScrollPane(transTable);
 		tpShowPane.addTab("物流", scrollPane);
+	}
+	
+	/**
+	* Copyright: Copyright (c) 2019 YiYChao
+	* 
+	* @ClassName MainFrame.java
+	* @Description 线程类，每隔两分钟刷新一次显示数据表中的数据
+	*
+	* @version v1.0.0
+	* @author YiChao
+	* @date 2019年3月30日 下午11:28:55 
+	* <p>修改说明:</p>
+	 */
+	private class UpdateTableThread extends Thread{
+		// 重写run方法
+		public void run() {
+			while(true) {
+				// 移除所有的选项卡
+				tpShowPane.removeAll();
+				flushMatchedLogTable();	// 刷新日志信息
+				flushMatchedTransTable();	// 刷新物流信息
+				try {
+					Thread.sleep(2*60*1000);  	// 线程挂起两分钟
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				System.out.println("刷新数据完毕！");
+			}
+		}
 	}
 }
