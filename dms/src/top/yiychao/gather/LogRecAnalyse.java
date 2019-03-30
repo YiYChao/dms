@@ -21,10 +21,10 @@ import top.yiychao.exception.DataAnalyseException;
 public class LogRecAnalyse extends DataFilter implements IDataAnalyse{
 
 	// 登录集合
-	private ArrayList<LogRec> logins;
+	private ArrayList<LogRec> logins = new ArrayList<LogRec>();
 	
 	// 登出集合
-	private ArrayList<LogRec> logouts;
+	private ArrayList<LogRec> logouts = new ArrayList<LogRec>();
 
 	// 空构造
 	public LogRecAnalyse() {

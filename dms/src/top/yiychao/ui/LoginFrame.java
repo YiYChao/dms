@@ -150,7 +150,6 @@ public class LoginFrame extends JFrame{
 			LoginFrame.this.setVisible(false);
 			new RegistFrame();
 		}
-		
 	}
 	
 	public static void main(String[] args) {

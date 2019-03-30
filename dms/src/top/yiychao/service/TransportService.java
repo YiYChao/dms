@@ -4,8 +4,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -261,4 +263,28 @@ public class TransportService {
 		return matchedTrans;
 	}
 	
+	/**
+	* @Function readTranResult
+	* @Description 读取数据库中所有匹配物流信息
+	*
+	* @return 返回一个ResultSet
+	*
+	* @version v1.0.0
+	* @author YiChao
+	* @date 2019年3月29日 下午2:14:57 
+	* <p>修改说明:</p>
+	 */
+	public ResultSet readTranResult() {
+		DBUtils db = new DBUtils();
+		ResultSet rs = null;
+		try {
+			Connection conn = db.getConnection();
+			Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			String sql = "SELECT * FROM gather_transport";
+			rs = statement.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
 }

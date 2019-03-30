@@ -4,8 +4,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -268,5 +270,28 @@ public class LogRecService {
 		return matchedLogRecs;
 	}
 	
-	
+	/**
+	* @Function readLogResult
+	* @Description 获取数据空中的所有匹配日志信息
+	*
+	* @return 返回一个ResultSet
+	* 
+	* @version v1.0.0
+	* @author YiChao
+	* @date 2019年3月29日 下午2:13:23 
+	* <p>修改说明:</p>
+	 */
+	public ResultSet readLogResult() {
+		DBUtils db = new DBUtils();
+		ResultSet rs = null;
+		try {
+			Connection conn = db.getConnection();
+			Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			String sql = "SELECT * FROM gather_logrec";
+			rs = statement.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
 }
