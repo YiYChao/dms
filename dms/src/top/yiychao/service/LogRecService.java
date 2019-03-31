@@ -134,11 +134,13 @@ public class LogRecService {
 	 * <p>修改说明:</p>
 	 */
 	public void showMathcedLog(ArrayList<MatchedLogRec> matchedLogRecs) {
-		for (MatchedLogRec matchedLogRec : matchedLogRecs) {
-			if(matchedLogRec != null) {
-				System.out.println(matchedLogRec.toString());
-			}
-		}
+//		for (MatchedLogRec matchedLogRec : matchedLogRecs) {
+//			if(matchedLogRec != null) {
+//				System.out.println(matchedLogRec.toString());
+//			}
+//		}
+		// 使用lambda表达式输出集合中的数据
+		matchedLogRecs.forEach(e -> System.out.println(e.toString()));
 	}
 	
 	/**

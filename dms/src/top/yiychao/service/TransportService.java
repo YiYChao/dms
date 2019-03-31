@@ -123,11 +123,13 @@ public class TransportService {
 	 * <p>修改说明:</p>
 	 */
 	public void showMatchTransport(ArrayList<MathcedTransport> mathcedTransports) {
-		for (MathcedTransport mathcedTransport : mathcedTransports) {
-			if(mathcedTransport != null) {
-				System.out.println(mathcedTransport.toString());
-			}
-		}
+//		for (MathcedTransport mathcedTransport : mathcedTransports) {
+//			if(mathcedTransport != null) {
+//				System.out.println(mathcedTransport.toString());
+//			}
+//		}
+		// 使用lambda表达式输出集合中的数据
+		mathcedTransports.forEach(e -> System.out.println(e.toString()));
 	}
 	
 	/**

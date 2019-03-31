@@ -11,8 +11,9 @@ import java.util.ArrayList;
 * @version v1.0.0
 * @author YiChao
 * @date 2019年3月17日 下午8:34:31 
-* <p>修改说明:</p>
+* <p>修改说明:使用@FunctionalInterface注解将该接口定义为函数式接口</p>
 */
+@FunctionalInterface
 public interface IDataAnalyse {
 
 	/**

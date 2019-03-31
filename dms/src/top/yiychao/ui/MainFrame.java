@@ -189,21 +189,25 @@ public class MainFrame extends JFrame{
 		menuBar.add(menuHelp);
 		
 		miCheck = new JMenuItem("查看帮助");
-		miCheck.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "本系统实现数据的采集、过滤分析匹配、保存、发送及显示功能", "帮助", JOptionPane.QUESTION_MESSAGE);
-			}
-		});
+//		miCheck.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				JOptionPane.showMessageDialog(null, "本系统实现数据的采集、过滤分析匹配、保存、发送及显示功能", "帮助", JOptionPane.QUESTION_MESSAGE);
+//			}
+//		});
+		// 使用Lambda表达式方式监听
+		miCheck.addActionListener(e -> JOptionPane.showMessageDialog(null, "本系统实现数据的采集、过滤分析匹配、保存、发送及显示功能", "帮助", JOptionPane.QUESTION_MESSAGE));
 		menuHelp.add(miCheck);
 		
 		miAbout = new JMenuItem("关于系统");
-		miAbout.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "版本：1.0版\n作者：易小超\n版权：小超工作室", "关于", JOptionPane.WARNING_MESSAGE);
-			}
-		});
+//		miAbout.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				JOptionPane.showMessageDialog(null, "版本：1.0版\n作者：易小超\n版权：小超工作室", "关于", JOptionPane.WARNING_MESSAGE);
+//			}
+//		});
+		// 使用Lambda表达式方式监听
+		miAbout.addActionListener(e -> JOptionPane.showMessageDialog(null, "版本：1.0版\n作者：易小超\n版权：小超工作室", "关于", JOptionPane.WARNING_MESSAGE));
 		menuHelp.add(miAbout);
 	}
 	
