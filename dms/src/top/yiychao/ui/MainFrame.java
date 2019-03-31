@@ -6,6 +6,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -37,8 +40,10 @@ import top.yiychao.entity.Transport;
 import top.yiychao.exception.DataAnalyseException;
 import top.yiychao.gather.LogRecAnalyse;
 import top.yiychao.gather.TransportAnalyse;
+import top.yiychao.net.DmsNetServer;
 import top.yiychao.service.LogRecService;
 import top.yiychao.service.TransportService;
+import top.yiychao.util.Config;
 
 /**   
 * Copyright: Copyright (c) 2019 YiYChao
@@ -59,10 +64,10 @@ public class MainFrame extends JFrame{
 	private JMenuItem miGather, miMatchLog, miMatchTran, miSave, miSend, miShow, miExit, miCheck, miAbout;
 	private JTabbedPane tpGather, tpShowPane;
 	private JPanel panel, pLog, pTran, pLogId, pName, pLocation, pIP, pLogStatus, pLogButton, pTransId, pAddress, pHandler, pReceiver, pTranStatus, pTranButton;
-	private JLabel lbLogId, lbName, lbLocation, lbIP, lbLogStatus, lbTransId, lbAddress, lbHandler, lbReceiver, lbTranStatus, lbTranButton;
+	private JLabel lbLogId, lbName, lbLocation, lbIP, lbLogStatus, lbTransId, lbAddress, lbHandler, lbReceiver, lbTranStatus;
 	private JTextField txtLogId, txtName, txtLocation, txtIP, txtTransId, txtAddress, txtHandler, txtReceiver;
 	private JRadioButton rbLogin, rbLogout;
-	private JButton btnLogConfirm, btnLogReset, btnTranConfirm, btnTranReset, btnGather, btnMatchLog, btnMatchTrans, btnSave, btnSend, btnShow;
+	private JButton btnLogConfirm, btnLogReset, btnTranConfirm, btnTranReset, btnGather, btnMatchLog, btnSave, btnSend, btnShow;
 	private JComboBox<String> cmbTranStatus;
 	private JToolBar toolBar;
 	private JScrollPane scrollPane;
@@ -78,6 +83,7 @@ public class MainFrame extends JFrame{
 	private LogRecService logService;
 	private TransportService tranService;
 	
+	private String serverIP;
 	
 	public MainFrame() {
 		super("DMS系统客户端");
@@ -118,6 +124,11 @@ public class MainFrame extends JFrame{
 		
 		// 开启更新表格数据的线程
 		new UpdateTableThread().start();
+		
+		// 从配置文件中获取网络通信服务器的IP地址
+		serverIP = Config.getValue("serverIP");
+		
+		new DmsNetServer();
 	}
 	
 	/**
@@ -154,6 +165,7 @@ public class MainFrame extends JFrame{
 		menuOperate.add(miSave);
 		
 		miSend = new JMenuItem("发送数据");
+		miSend.addActionListener(new SendDataListener());
 		menuOperate.add(miSend);
 		
 		miShow = new JMenuItem("显示数据");
@@ -230,10 +242,11 @@ public class MainFrame extends JFrame{
 		
 		ImageIcon sendIcon = new ImageIcon("images/sendData.png");
 		btnSend = new JButton("发送数据", sendIcon);
+		btnSend.addActionListener(new SendDataListener());
 		toolBar.add(btnSend);
 		
 		ImageIcon showIcon = new ImageIcon("images/showData.png");
-		btnShow = new JButton("数据采集", showIcon);
+		btnShow = new JButton("显示数据", showIcon);
 		btnShow.addActionListener(new ShowDataListener());
 		toolBar.add(btnShow);
 		
@@ -317,14 +330,14 @@ public class MainFrame extends JFrame{
 			if(matchedLogs != null && matchedLogs.size() > 0) {
 				// 保存匹配的日志信息
 				logService.saveMatchLog(matchedLogs);
-				logService.saveMatchLog2DB(matchedLogs);
+//				logService.saveMatchLog2DB(matchedLogs);
 				JOptionPane.showMessageDialog(null, "匹配的日志数据已保存到文件和数据库中！", "提示", JOptionPane.INFORMATION_MESSAGE);
 			}else {
 				JOptionPane.showMessageDialog(null, "没有匹配的日志信息！", "提示", JOptionPane.INFORMATION_MESSAGE);
 			}
 			if(matchedTrans != null && matchedTrans.size() > 0) {
 				tranService.saveMatchTrab(matchedTrans);
-				tranService.saveMatchTran2DB(matchedTrans);
+//				tranService.saveMatchTran2DB(matchedTrans);
 				JOptionPane.showMessageDialog(null, "匹配的物流数据已保存到文件和数据库中！", "提示", JOptionPane.INFORMATION_MESSAGE);
 			}else {
 				JOptionPane.showMessageDialog(null, "没有匹配的物流信息！", "提示", JOptionPane.INFORMATION_MESSAGE);
@@ -637,6 +650,49 @@ public class MainFrame extends JFrame{
 					e.printStackTrace();
 				}
 				System.out.println("刷新数据完毕！");
+			}
+		}
+	}
+	
+	/**
+	* Copyright: Copyright (c) 2019 YiYChao
+	* 
+	* @ClassName MainFrame.java
+	* @Description 发送数据监听类
+	*
+	* @version v1.0.0
+	* @author YiChao
+	* @date 2019年3月31日 下午9:53:19 
+	* <p>修改说明:</p>
+	 */
+	private class SendDataListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			try {
+				if(matchedLogs != null && matchedLogs.size() > 0) {
+					Socket logSocket = new Socket(serverIP, 8888);
+					ObjectOutputStream logOutputStream = new ObjectOutputStream(logSocket.getOutputStream());
+					logOutputStream.writeObject(matchedLogs);
+					logOutputStream.flush();
+					logOutputStream.close();
+					matchedLogs.clear();
+					JOptionPane.showMessageDialog(null, "匹配的日志数据已经发送到服务器", "提示", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "没有匹配的日志数据", "提示", JOptionPane.WARNING_MESSAGE);
+				}
+				if(matchedTrans != null && matchedTrans.size() > 0) {
+					Socket tranSocket = new Socket(serverIP,8889);
+					ObjectOutputStream tranOutputStream = new ObjectOutputStream(tranSocket.getOutputStream());
+					tranOutputStream.writeObject(matchedTrans);
+					tranOutputStream.flush();
+					tranOutputStream.close();
+					matchedTrans.clear();
+					JOptionPane.showMessageDialog(null, "匹配的物流数据已经发送到服务器", "提示", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "没有物流的日志数据", "提示", JOptionPane.WARNING_MESSAGE);
+				}
+			} catch (IOException ex) {
+				
 			}
 		}
 	}

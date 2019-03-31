@@ -59,13 +59,13 @@ public class LoginFrame extends JFrame{
 		btnRegist = new JButton("注册");
 		btnRegist.addActionListener(new RegistListener());
 		
-		lbName.setBounds(30, 30, 60, 25);
-		lbPwd.setBounds(30, 60, 60, 25);
-		txtName.setBounds(95, 30, 120, 25);
-		txtPwd.setBounds(95, 60, 120, 25);
-		btnOK.setBounds(30, 90, 60, 25);
-		btnReset.setBounds(95, 90, 60, 25);
-		btnRegist.setBounds(160, 90, 60, 25);
+		lbName.setBounds(60, 20, 60, 25);
+		lbPwd.setBounds(60, 60, 60, 25);
+		txtName.setBounds(125, 20, 130, 25);
+		txtPwd.setBounds(125, 60, 130, 25);
+		btnOK.setBounds(60, 100, 60, 25);
+		btnReset.setBounds(130, 100, 60, 25);
+		btnRegist.setBounds(200, 100, 60, 25);
 		
 		panel.add(lbName);
 		panel.add(lbPwd);
@@ -76,7 +76,7 @@ public class LoginFrame extends JFrame{
 		panel.add(btnRegist);
 		
 		this.add(panel);
-		this.setSize(250, 170);
+		this.setSize(330, 170);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
