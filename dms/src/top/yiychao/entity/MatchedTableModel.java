@@ -3,6 +3,7 @@ package top.yiychao.entity;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -22,6 +23,7 @@ public class MatchedTableModel extends AbstractTableModel{
 	private ResultSet rs;
 	private ResultSetMetaData rsmd;
 	private int sign;	// 标志位,0物流，1日志
+	private SimpleDateFormat format;
 	
 	public MatchedTableModel(ResultSet rs, int sign) {
 		this.rs = rs;
@@ -31,6 +33,7 @@ public class MatchedTableModel extends AbstractTableModel{
 		} catch (SQLException e) {
 			rsmd = null;
 		}
+		format = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
 	}
 	
 	/**
@@ -65,6 +68,9 @@ public class MatchedTableModel extends AbstractTableModel{
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		try {
 			rs.absolute(rowIndex + 1);
+			if(columnIndex == 1) {
+				return format.format(rs.getDate(columnIndex + 1));
+			}
 			return rs.getObject(columnIndex + 1);
 		} catch (SQLException e) {
 			return null;
